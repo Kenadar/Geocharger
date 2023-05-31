@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('geodata', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->decimal('latitude', 9, 6)->nullable();
+            $table->decimal('longitude', 9, 6)->nullable();
             $table->timestamps();
-            $table->decimal('latitude', 0, 90)->nullable();
-            $table->decimal('longitude', 0, 90)->nullable();
         });
     }
 
