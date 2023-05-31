@@ -1,4 +1,5 @@
 {
     "image":"mcr.microsoft.com/devcontainers/universal:2",
-    "postCreateCommand": "cp .env.example .env && composer install && echo alias sail='./vendor/bin/sail' >> ~/.bashrc && source ~/.bashrc"
+    "postCreateCommand": "cp .env.example .env && composer install && echo alias sail='./vendor/bin/sail' >> ~/.bashrc",
+    "postStartCommand": "source ~/.bashrc"
 }
