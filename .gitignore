@@ -25,3 +25,4 @@ Homestead.json
 
 .editorconfig
 .DS_store
+.vscode/*
