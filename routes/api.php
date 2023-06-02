@@ -1,8 +1,9 @@
 <?php
-
-use App\Models\Geodata;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\Geodata;
+use App\Models\Booking;
+use App\Http\Controllers\BookingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,5 @@ Route::get('/geodata', function (Request $request){
         'longitude' => $request->get('longitude')
     ]);
 });
+
+Route::get('/booking',  [BookingController::class, 'store'] );
