@@ -16,4 +16,9 @@ class Geodata extends Model
     ];
 
     protected $table = 'geodata';
+
+    public function booking() : HasMany
+    {
+        return $this->hasMany(Booking::class);
+    }
 }

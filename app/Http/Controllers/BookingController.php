@@ -9,6 +9,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use App\Models\Geodata;
 
 
 class BookingController extends BaseController
@@ -28,6 +29,8 @@ class BookingController extends BaseController
             return response()->json(['status'=> 'failed']);
         }
 
+        Geodata::doesntHave('booking')->get();
+
         Booking::create([
             'tenant'=>$request->get('tenant'),
             'lessor'=>$request->get('lessor'),
@@ -36,4 +39,6 @@ class BookingController extends BaseController
 
         return response()->json(['status' => 'success']);
     } 
+
+    
 }
