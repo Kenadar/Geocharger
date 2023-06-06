@@ -21,7 +21,7 @@ class BookingController extends BaseController
         $validated = Validator::make($request->all(), [
             'tenant' => 'required|integer',
             'lessor' => 'required|integer',
-            'geodata' =>'required|integer'
+            'geodata' =>'required|integer|exists:geodatas'
         ]);
 
 
@@ -29,7 +29,11 @@ class BookingController extends BaseController
             return response()->json(['status'=> 'failed']);
         }
 
-        Geodata::doesntHave('booking')->get();
+        // Geodata::doesntHave('booking')->get();
+
+        if(Booking::where('geodata')->exists()){
+            return response()->json(['status'=>'already booked!']);
+        }
 
         Booking::create([
             'tenant'=>$request->get('tenant'),
