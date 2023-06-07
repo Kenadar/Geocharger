@@ -6,14 +6,10 @@ use App\Models\Booking;
 use Illuminate\Http\Request;
 use Validator;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Routing\Controller as Controller;
 
-
-class BookingController extends BaseController
+class BookingController extends Controller
 {
-    use AuthorizesRequests, ValidatesRequests;
 
     public function store(Request $request): JsonResponse
     {
