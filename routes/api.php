@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\GeodataController;
-use App\Models\Geodata;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GeodataController;
+use App\Models\Geodata;
+use App\Models\Booking;
+use App\Http\Controllers\BookingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +29,5 @@ Route::get('/geodata', function (Request $request){
     $request = Geodata::all();
     return $request -> toJson();
 });
+
+Route::get('/booking',  [BookingController::class, 'store'] );
