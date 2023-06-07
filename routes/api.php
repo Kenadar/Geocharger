@@ -20,4 +20,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/geodata', [GeodataController::class, 'store']);
+
+Route::get('/geodata/create', [GeodataController::class, 'store']);
+
+Route::get('/geodata', function (Request $request){
+    $request = Geodata::all();
+    return $request -> toJson();
+});
