@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Http\Controllers\GeodataController;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Geodata extends Model
 {
@@ -15,7 +17,7 @@ class Geodata extends Model
         'longitude'
     ];
 
-    protected $table = 'geodata';
+    protected $table = 'geodatas';
 
     public function booking() : HasMany
     {
