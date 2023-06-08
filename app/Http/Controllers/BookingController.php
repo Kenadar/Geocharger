@@ -16,17 +16,16 @@ class BookingController extends Controller
         $validated = Validator::make($request->all(), [
             'tenant' => 'required|integer',
             'lessor' => 'required|integer',
-            'geodata' =>'required|integer'
+            'geodata_id' =>'required|integer'
         ]);
 
         if ($validated->fails()) {
             return response()->json(['status'=> 'failed']);
         }  
 
-        // if(Booking::whereExist('geodatas')){
+        // if(Booking::whereExist('geodata_id')){
         //     return response()->json(['status'=>'already booked!']);
         // }
-
 
         // if(Geodata::whereNotExist('id')){
         //         return response()->json(['status'=>'no charging points here!']);
