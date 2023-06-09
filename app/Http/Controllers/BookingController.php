@@ -16,7 +16,9 @@ class BookingController extends Controller
         $validated = Validator::make($request->all(), [
             'tenant' => 'required|integer',
             'lessor' => 'required|integer',
-            'geodata_id' =>'required|integer'
+            'geodata_id' =>'required|integer',
+            'start_time'=>'required|integer',
+            'end_time'=>'required|integer'
         ]);
 
         if ($validated->fails()) {
@@ -29,18 +31,19 @@ class BookingController extends Controller
             return response()->json(['status'=>'already booked!']);
         }
 
-        // if(Geodata::whereNotExist('geodata_id')){
-        //         return response()->json(['status'=>'no charging points here!']);
-        // }
-        try {
+        // try {
+            $startTime = (new \DateTime())->setTimestamp($request->get('start_time'));
+            $endTime = (new \DateTime())->setTimestamp($request->get('end_time'));
             Booking::create([
                 'tenant'=>$request->get('tenant'),
                 'lessor'=>$request->get('lessor'),
-                'geodata_id'=>$request->get('geodata_id')
+                'geodata_id'=>$request->get('geodata_id'),
+                'start_time'=>$startTime,
+                'end_time'=>$endTime
             ]);    
-        } catch (\Illuminate\Database\QueryException $e) {
-            return response()->json(['status'=>'no points with this id!']);
-        }
+        // } catch (\Illuminate\Database\QueryException $e) {
+        //     return response()->json(['status'=>'no points with this id!']);
+        // }
         
         return response()->json(['status' => 'success']);
     } 

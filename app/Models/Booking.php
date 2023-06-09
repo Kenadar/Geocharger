@@ -14,7 +14,9 @@ class Booking extends Model
     protected $fillable = [
         'tenant',
         'lessor',
-        'geodata_id'
+        'geodata_id',
+        'start_time',
+        'end_time'
     ];
 
     public function geodata() : BelongsTo
