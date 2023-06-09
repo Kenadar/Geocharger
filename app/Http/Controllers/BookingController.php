@@ -23,20 +23,25 @@ class BookingController extends Controller
             return response()->json(['status'=> 'failed']);
         }  
 
-        // if(Booking::whereExist('geodata_id')){
-        //     return response()->json(['status'=>'already booked!']);
-        // }
+        $alreadyBooked = Booking::where('geodata_id', $request->get('geodata_id'))->get()->isNotEmpty();
+        
+        if($alreadyBooked){
+            return response()->json(['status'=>'already booked!']);
+        }
 
-        // if(Geodata::whereNotExist('id')){
+        // if(Geodata::whereNotExist('geodata_id')){
         //         return response()->json(['status'=>'no charging points here!']);
         // }
-
-        Booking::create([
-            'tenant'=>$request->get('tenant'),
-            'lessor'=>$request->get('lessor'),
-            'geodata'=>$request->get('geodata')
-        ]);
-
+        try {
+            Booking::create([
+                'tenant'=>$request->get('tenant'),
+                'lessor'=>$request->get('lessor'),
+                'geodata_id'=>$request->get('geodata_id')
+            ]);    
+        } catch (\Illuminate\Database\QueryException $e) {
+            return response()->json(['status'=>'no points with this id!']);
+        }
+        
         return response()->json(['status' => 'success']);
     } 
 
