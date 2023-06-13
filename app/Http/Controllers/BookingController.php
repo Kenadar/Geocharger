@@ -31,34 +31,23 @@ class BookingController extends Controller
             return response()->json(['status'=>'already booked!']);
         }
 
-        $start_time = $request->get('start_time');
-        $end_time = $request-> get('end_time');
-
-        $bookingOnOverLappingTime = Booking::where('geodata_id', $request->get('geodata_id'))
-
-            ->where('start_time', '<=', $start_time)->where('end_time', '>=', $end_time)->get();
-
-        if($bookingOnOverLappingTime->count() > 0){
-            return response()->json(['status'=>'already booked time!']);
-    }
-
-        // $alreadyBookedTime = Booking::where([['start_date',$request->input('start_date')],
-        // ['end_date',$request->input('end_date')]])->exists();
-       
-            
-        // if( $alreadyBookedTime)
-        // {
-        //     return response()->json(['status'=>'already booked time!']);
-        // }
-        
-            
-            
-            return response()->json(['status'=>'already booked!']);
-        
         $startTime = (new \DateTime())->setTimestamp($request->get('start_time'));
         $endTime = (new \DateTime())->setTimestamp($request->get('end_time'));
+        $startDate = $startTime->format('Y-m-d');
+        $startInterval = $startTime->format('H');
+        $endDate = $endTime->format('Y-m-d');
+        $endInterval = $endTime->format('H');
 
+        $checkBookingInterval = Booking::where('geodata_id', $request->get('geodata_id'))
 
+            ->where('interval', '>=', 'start_interval')
+            ->where('interval', '<=', 'end_interval')
+            ->where('date', '>=', 'start_date')
+            ->where('date', '<=', 'end_date');
+
+        if($checkBookingInterval->count() > 0){
+            return response()->json(['status'=>'already booked time interval!']);
+        }
 
         try {
             Booking::create([
@@ -66,7 +55,8 @@ class BookingController extends Controller
                 'lessor'=>$request->get('lessor'),
                 'geodata_id'=>$request->get('geodata_id'),
                 'start_time'=>$startTime,
-                'end_time'=>$endTime
+                'end_time'=>$endTime,
+                'interval'=>$request->get('interval')
             ]);    
         } catch (\Illuminate\Database\QueryException $e) {
             return response()->json(['status'=>'no points with this id!']);

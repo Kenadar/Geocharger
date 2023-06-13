@@ -17,8 +17,8 @@ return new class extends Migration
             $table->integer('lessor');
             $table->integer('geodata_id');
             $table->foreign('geodata_id')->references('id')->on('geodatas');
-            $table->timestamp('start_time');
-            $table->timestamp('end_time');
+            $table->date('date');
+            $table->integer('interval');
             $table->timestamps();
         });
     }
