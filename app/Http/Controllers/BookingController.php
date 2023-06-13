@@ -31,9 +31,36 @@ class BookingController extends Controller
             return response()->json(['status'=>'already booked!']);
         }
 
-        // try {
-            $startTime = (new \DateTime())->setTimestamp($request->get('start_time'));
-            $endTime = (new \DateTime())->setTimestamp($request->get('end_time'));
+        $start_time = $request->get('start_time');
+        $end_time = $request-> get('end_time');
+
+        $bookingOnOverLappingTime = Booking::where('geodata_id', $request->get('geodata_id'))
+
+            ->where('start_time', '<=', $start_time)->where('end_time', '>=', $end_time)->get();
+
+        if($bookingOnOverLappingTime->count() > 0){
+            return response()->json(['status'=>'already booked time!']);
+    }
+
+        // $alreadyBookedTime = Booking::where([['start_date',$request->input('start_date')],
+        // ['end_date',$request->input('end_date')]])->exists();
+       
+            
+        // if( $alreadyBookedTime)
+        // {
+        //     return response()->json(['status'=>'already booked time!']);
+        // }
+        
+            
+            
+            return response()->json(['status'=>'already booked!']);
+        
+        $startTime = (new \DateTime())->setTimestamp($request->get('start_time'));
+        $endTime = (new \DateTime())->setTimestamp($request->get('end_time'));
+
+
+
+        try {
             Booking::create([
                 'tenant'=>$request->get('tenant'),
                 'lessor'=>$request->get('lessor'),
@@ -41,9 +68,9 @@ class BookingController extends Controller
                 'start_time'=>$startTime,
                 'end_time'=>$endTime
             ]);    
-        // } catch (\Illuminate\Database\QueryException $e) {
-        //     return response()->json(['status'=>'no points with this id!']);
-        // }
+        } catch (\Illuminate\Database\QueryException $e) {
+            return response()->json(['status'=>'no points with this id!']);
+        }
         
         return response()->json(['status' => 'success']);
     } 
