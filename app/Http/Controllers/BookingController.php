@@ -17,8 +17,8 @@ class BookingController extends Controller
             'tenant' => 'required|integer',
             'lessor' => 'required|integer',
             'geodata_id' =>'required|integer',
-            'start_time'=>'required|integer',
-            'end_time'=>'required|integer'
+            'date'=>'required|date',
+            'interval'=>'required|integer'
         ]);
 
         if ($validated->fails()) {
@@ -40,10 +40,10 @@ class BookingController extends Controller
 
         $checkBookingInterval = Booking::where('geodata_id', $request->get('geodata_id'))
 
-            ->where('interval', '>=', 'start_interval')
-            ->where('interval', '<=', 'end_interval')
-            ->where('date', '>=', 'start_date')
-            ->where('date', '<=', 'end_date');
+            ->where('interval', '>=', $startInterval)
+            ->where('interval', '<=', $endInterval)
+            ->where('date', '>=', $startDate)
+            ->where('date', '<=', $endDate);
 
         if($checkBookingInterval->count() > 0){
             return response()->json(['status'=>'already booked time interval!']);
@@ -54,8 +54,7 @@ class BookingController extends Controller
                 'tenant'=>$request->get('tenant'),
                 'lessor'=>$request->get('lessor'),
                 'geodata_id'=>$request->get('geodata_id'),
-                'start_time'=>$startTime,
-                'end_time'=>$endTime,
+                'date'=>$request->get('date'),
                 'interval'=>$request->get('interval')
             ]);    
         } catch (\Illuminate\Database\QueryException $e) {
