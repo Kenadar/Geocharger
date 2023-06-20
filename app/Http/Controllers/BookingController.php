@@ -17,20 +17,33 @@ class BookingController extends Controller
             'tenant' => 'required|integer',
             'lessor' => 'required|integer',
             'geodata_id' =>'required|integer',
-            'date'=>'required|date'
+            'start_date'=>'required|date',
+            'end_date'=>'required|date'
         ]);
-
 
         if ($validated->fails()) {
             return response()->json(['status'=> 'failed']);
         }
         $alreadyBooked = Booking::where([
             'geodata_id'=> $request->get('geodata_id'),
-            'date'=>$request->get('date')
+            'start_date'=>$request->get('start_date'),
+            'end_date'=>$request->get('end_date')
             ])->get()->isNotEmpty();
 
         if($alreadyBooked){
             return response()->json(['status'=>'already booked!']);
+        }
+
+        $dates = array('start_date', 'end_date');
+        $startDate = 'start_date';
+        $endDate = 'end_date';
+
+        foreach($dates as $date){
+
+            if(($date >= $startDate) && ($date <= $endDate)){
+            
+            return response()->json(['status'=>'already booked date!']);
+            }
         }
 
 
@@ -38,7 +51,8 @@ class BookingController extends Controller
             'tenant'=>$request->get('tenant'),
             'lessor'=>$request->get('lessor'),
             'geodata_id'=>$request->get('geodata_id'),
-            'date'=>$request->get('date')
+            'start_date'=>$request->get('start_date'),
+            'end_date'=>$request->get('end_date')
         ]);
 
         return response()->json(['status' => 'success']);
