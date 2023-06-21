@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('geodata_id');
             $table->foreign('geodata_id')->references('id')->on('geodatas');
             $table->date('date');
+            $table->integer('interval');
             $table->timestamps();
         });
     }
