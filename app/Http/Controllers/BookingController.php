@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Validator;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller as Controller;
+use DateInterval;
+use DatePeriod;
 
 class BookingController extends Controller
 {
@@ -21,40 +23,42 @@ class BookingController extends Controller
             'end_date'=>'required|date'
         ]);
 
+
         if ($validated->fails()) {
             return response()->json(['status'=> 'failed']);
         }
-        $alreadyBooked = Booking::where([
-            'geodata_id'=> $request->get('geodata_id'),
-            'start_date'=>$request->get('start_date'),
-            'end_date'=>$request->get('end_date')
-            ])->get()->isNotEmpty();
+
+        $alreadyBooked = Booking::where('geodata_id', '=',$request->get('geodata_id'))
+            ->where('date', '>=', $request->get('start_date'))
+            ->where('date', '<=', $request->get('end_date'))
+            ->get()->isNotEmpty();
+            
 
         if($alreadyBooked){
             return response()->json(['status'=>'already booked!']);
         }
 
-        $dates = array('start_date', 'end_date');
-        $startDate = 'start_date';
-        $endDate = 'end_date';
+        /// create dateinterval
 
-        foreach($dates as $date){
+        $start_date = date_create($request->get('start_date'));
+        $end_date = date_create($request->get('end_date'))->modify('+1 day');
 
-            if(($date >= $startDate) && ($date <= $endDate)){
-            
-            return response()->json(['status'=>'already booked date!']);
-            }
-        }
+        $interval = DateInterval::createFromDateString('1 day');
+        $daterange = new DatePeriod($start_date, $interval , $end_date);
 
+        foreach($daterange as $date){
+            $date = $date->format('Y-m-d');
 
-        Booking::create([
-            'tenant'=>$request->get('tenant'),
-            'lessor'=>$request->get('lessor'),
-            'geodata_id'=>$request->get('geodata_id'),
-            'start_date'=>$request->get('start_date'),
-            'end_date'=>$request->get('end_date')
+           Booking::create([
+            'tenant'=> $request->get('tenant'),
+            'lessor'=> $request->get('lessor'),
+            'geodata_id'=> $request->get('geodata_id'),
+            'date'=>$date
         ]);
+        }
 
         return response()->json(['status' => 'success']);
     } 
-}
+
+    }
+

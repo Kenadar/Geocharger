@@ -15,8 +15,7 @@ class Booking extends Model
         'tenant',
         'lessor',
         'geodata_id',
-        'start_date',
-        'end_date'
+        'date'
     ];
 
     public function geodata() : BelongsTo
