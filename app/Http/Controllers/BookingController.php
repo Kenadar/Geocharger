@@ -56,9 +56,7 @@ class BookingController extends Controller
            Booking::create([
             'tenant'=> $request->get('tenant'),
             'lessor'=> $request->get('lessor'),
-            'geodata_id'=> $request->get('geodata_id'),
-            'date'=> $this-> getDate($date),
-            'interval' => $this->getInterval($date)
+            'interval' => $this->getInterval($date->getTimestamp())
         ]);
         }
 
