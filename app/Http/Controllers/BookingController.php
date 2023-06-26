@@ -28,22 +28,15 @@ class BookingController extends Controller
             return response()->json(['status'=> 'failed']);
         }
 
-        $start_time = new \DateTime();
-        $start_time->setTimestamp($request->get('start_time'));
-
-        $end_time = new \DateTime();
-        $end_time->setTimestamp($request->get('end_time'));
-
-        $interval = DateInterval::createFromDateString('15 minutes');
-        $daterange = new DatePeriod($start_time, $interval , $end_time);
+        $start_interval = $this -> getInterval($request->get('start_time'));
+        $end_interval = $this -> getInterval($request->get('end_time'));
+        $intervalrange = range($start_interval, $end_interval);
 
         
         $alreadyBooked = Booking::where('geodata_id', '=', $request->get('geodata_id'))
  
-            ->where('interval', '>=', $this -> getInterval($start_time)) 
-            ->where('interval' , '<=', $this -> getInterval($end_time))
-            ->where('date', '>=', $this -> getDate($start_time))
-            ->where('date', '<=', $this -> getDate($end_time))
+            ->where('interval', '>=', $start_interval) 
+            ->where('interval' , '<=', $end_interval)
             ->get()->isNotEmpty();
             
 
@@ -51,12 +44,13 @@ class BookingController extends Controller
             return response()->json(['status'=>'already booked!']);
         }
 
-        foreach($daterange as $date){
+        foreach($intervalrange as $interval){
 
            Booking::create([
             'tenant'=> $request->get('tenant'),
             'lessor'=> $request->get('lessor'),
-            'interval' => $this->getInterval($date->getTimestamp())
+            'geodata_id' => $request->get('geodata_id'),
+            'interval' => $interval
         ]);
         }
 
@@ -75,20 +69,12 @@ class BookingController extends Controller
         return $roundedMinutes;
     }
     
-    function getInterval(DateTime $dateTime): int|float
+    function getInterval(int $timestamp): int|float
     {
-        $hours = $dateTime->format('H');
-        $minutes = $dateTime->format('i');
-        $roundedMinutes = $this->roundMinutes($minutes);
-        $minutesFromDayStart = (($hours * 60) + $roundedMinutes);
-        $interval = $minutesFromDayStart / 15;
+        $timestampMinutes = intval($timestamp / 60);
+        $roundedMinutes = $this -> roundMinutes($timestampMinutes);
+        $interval = $roundedMinutes / 15;
         return $interval;
-    }
-    
-    function getDate(DateTime $dateTime) {
-        $date = $dateTime->format('Y-m-d');
-    
-        return $date;
     }
     
 

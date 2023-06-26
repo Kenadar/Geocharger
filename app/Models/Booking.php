@@ -15,7 +15,6 @@ class Booking extends Model
         'tenant',
         'lessor',
         'geodata_id',
-        'date',
         'interval'
     ];
 
