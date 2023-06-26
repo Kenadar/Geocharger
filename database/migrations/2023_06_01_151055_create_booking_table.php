@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->integer('tenant');
             $table->integer('lessor');
-            $table->integer('geodata');
+            $table->integer('geodata_id');
+            $table->foreign('geodata_id')->references('id')->on('geodatas');
+            $table->integer('interval');
             $table->timestamps();
         });
     }

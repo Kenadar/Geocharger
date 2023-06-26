@@ -14,7 +14,13 @@ class Booking extends Model
     protected $fillable = [
         'tenant',
         'lessor',
-        'geodata'
+        'geodata_id',
+        'interval'
     ];
+
+    public function geodata() : BelongsTo
+    {   
+        return $this->belongsTo(Geodata::class);
+    }
 
 }

@@ -15,5 +15,11 @@ class Geodata extends Model
         'longitude'
     ];
 
-    protected $table = 'geodata';
+    protected $table = 'geodatas';
+
+    public function booking() : HasMany
+    {
+        return $this->hasMany(Booking::class);
+    }
+
 }

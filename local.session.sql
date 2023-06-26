@@ -1,0 +1,1 @@
+select * from bookings where geodata_id=3
