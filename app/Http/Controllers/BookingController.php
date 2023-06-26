@@ -28,17 +28,6 @@ class BookingController extends Controller
             return response()->json(['status'=> 'failed']);
         }
 
-        $alreadyBooked = Booking::where('geodata_id', '=', $request->get('geodata_id'))
- 
-            ->where('interval', '>=', $request->get('start_time'))
-            ->where('interval', '<=', $request->get('end_time'))
-            ->get()->isNotEmpty();
-            
-
-        if($alreadyBooked){
-            return response()->json(['status'=>'already booked!']);
-        }
-
         $start_time = new \DateTime();
         $start_time->setTimestamp($request->get('start_time'));
 
@@ -47,6 +36,20 @@ class BookingController extends Controller
 
         $interval = DateInterval::createFromDateString('15 minutes');
         $daterange = new DatePeriod($start_time, $interval , $end_time);
+
+        
+        $alreadyBooked = Booking::where('geodata_id', '=', $request->get('geodata_id'))
+ 
+            ->where('interval', '>=', $this -> getInterval($start_time)) 
+            ->where('interval' , '<=', $this -> getInterval($end_time))
+            ->where('date', '>=', $this -> getDate($start_time))
+            ->where('date', '<=', $this -> getDate($end_time))
+            ->get()->isNotEmpty();
+            
+
+        if($alreadyBooked){
+            return response()->json(['status'=>'already booked!']);
+        }
 
         foreach($daterange as $date){
 
