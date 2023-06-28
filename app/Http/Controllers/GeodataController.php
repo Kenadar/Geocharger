@@ -22,6 +22,15 @@ class GeodataController extends Controller
             return response()->json(['status'=> 'failed']);
         }
 
+        $alreadyCreated = Geodata::where('latitude', '=', $request->get('latitude'))
+            ->where('longitude', '=', $request->get('longitude'))
+            ->get()->isNotEmpty();
+            
+
+        if($alreadyCreated){
+            return response()->json(['status'=>'Geodata already exist! Create new!']);
+        }
+
         Geodata::create([
             'name' => $request->get('name'),
             'latitude' => $request->get('latitude'),
