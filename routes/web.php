@@ -29,3 +29,8 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+
+Route::get('/geodata', function(){
+    return view('geodata');
+})->middleware(['auth', 'verified'])->name('geodata');
+
