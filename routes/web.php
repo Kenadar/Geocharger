@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Geodata;
+use App\Http\Controllers\GeodataController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +36,7 @@ Route::get('/geodata', function(){
     return view('geodata');
 })->middleware(['auth', 'verified'])->name('geodata');
 
+// Route::get('/geodata', function (Request $request){
+//     $request = Geodata::all();
+//     return view('/geodata');
+// });
