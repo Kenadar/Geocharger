@@ -22,4 +22,8 @@ class Geodata extends Model
         return $this->hasMany(Booking::class);
     }
 
+    public static function deleteById(int $id){
+        $geodata = Geodata::find($id);
+        $geodata->delete();
+    }
 }

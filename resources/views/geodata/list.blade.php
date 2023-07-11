@@ -1,8 +1,10 @@
-@extends('geodata')
-
 @section('list')
  
- <?php $geodataList = Geodata::table('geodata')->lists('id', 'latitude', 'longitude')->get(); ?>
- 
+<ul>
+    @foreach ($geodatas as $geodata) 
+    
+    <li><?= $geodata; ?></li>
 
+    @endforeach
+</ul>
 @section

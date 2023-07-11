@@ -36,7 +36,16 @@ Route::get('/geodata', function(){
     return view('geodata');
 })->middleware(['auth', 'verified'])->name('geodata');
 
-// Route::get('/geodata', function (Request $request){
-//     $request = Geodata::all();
-//     return view('/geodata');
-// });
+Route::get('/geodata/list', function () {
+
+    $geodata = Geodata::all();
+
+    return view('geodata/geodata', [
+        'geodatas' => $geodata
+    ]);
+});
+Route::get('/geodata/delete/{id}', function($id){
+    $deleteById = Geodata::deleteById($id);
+
+    return redirect('/geodata/list');
+});

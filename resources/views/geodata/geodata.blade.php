@@ -11,8 +11,15 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("You can create your geodata point here!") }}
                     <div>
-                        <ul class="mt-3 ">
-                            @yield('list')
+                        <ul>
+                            @foreach ($geodatas as $geodata) 
+                            
+                            <li>
+                                <?= $geodata->name; ?>
+                                <button>edit</button>
+                                <button><a href="/geodata/delete/<?= $geodata->id; ?>" class='color red-400'>delete</a></button>
+                            </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
