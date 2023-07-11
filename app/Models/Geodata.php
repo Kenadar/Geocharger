@@ -26,4 +26,16 @@ class Geodata extends Model
         $geodata = Geodata::find($id);
         $geodata->delete();
     }
+
+    public function edit(Request $request): View
+    {
+        return view('geodata');
+    }
+
+    public function update(int $id, $name, $latitude, $longitude): Request{
+
+
+    }
+    
+
 }

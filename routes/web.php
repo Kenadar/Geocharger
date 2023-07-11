@@ -32,8 +32,8 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
-Route::get('/geodata', function(){
-    return view('geodata');
+Route::get('/geodata/create', function(){
+    return view('geodata/geodata');
 })->middleware(['auth', 'verified'])->name('geodata');
 
 Route::get('/geodata/list', function () {
@@ -49,3 +49,14 @@ Route::get('/geodata/delete/{id}', function($id){
 
     return redirect('/geodata/list');
 });
+
+Route::get('/geodata/edit/{id}', function($id){
+    $deleteById = Geodata::deleteById($id);
+
+    return view('/geodata/list');
+});
+
+Route::post('/geodata/edit/{id}', function($id){
+    Geodata::update();
+})->name('geodata.update');
+
