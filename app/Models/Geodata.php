@@ -27,14 +27,22 @@ class Geodata extends Model
         $geodata->delete();
     }
 
-    public function edit(Request $request): View
-    {
-        return view('geodata');
+    public function edit(int $id){
+        $geodata = Geodata::find($id);
+
+
+        return view("geodata/edit/", ['geodata' => $geodata]);
     }
 
-    public function update(int $id, $name, $latitude, $longitude): Request{
+    public function update(Request $request, $id): Response
+    {
+        $geodata = Geodata::find($request->id);
+        $name = $request->input('name');
+        $latitude = $request->input('latitude');
+        $longitude = $request->input('longitude');
+        $geodata->save();
 
-
+        return redirect('/geodata/list');
     }
     
 

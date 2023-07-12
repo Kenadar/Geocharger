@@ -51,10 +51,10 @@ Route::get('/geodata/delete/{id}', function($id){
 });
 
 Route::get('/geodata/edit/{id}', function($id){
-    $deleteById = Geodata::deleteById($id);
 
-    return view('/geodata/list');
-});
+    $geodata = Geodata::find($id);
+    return view("geodata/edit", ['geodata' => $geodata]);
+})->name('geodata.edit');
 
 Route::post('/geodata/edit/{id}', function($id){
     Geodata::update();
