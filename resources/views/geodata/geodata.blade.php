@@ -20,6 +20,7 @@
                                 <button class ='text-red-400 ' ><a href="/geodata/delete/<?= $geodata->id; ?>" >delete</a></button>
                             </li>
                             @endforeach
+                            <x-primary-button><a href= '/geodata/create/create'>{{ __('Create') }}</a></x-primary-button>
                         </ul>
                     </div>
                 </div>
