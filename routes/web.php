@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Geodata;
 use App\Http\Controllers\GeodataController;
-
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 Route::get('/geodata/create', function(){
-    return view('geodata/geodata');
+    return view('geodata');
 })->middleware(['auth', 'verified'])->name('geodata');
 
 Route::get('/geodata/list', function () {
@@ -43,7 +43,8 @@ Route::get('/geodata/list', function () {
     return view('geodata/geodata', [
         'geodatas' => $geodata
     ]);
-});
+})->name('geodata.list');
+
 Route::get('/geodata/delete/{id}', function($id){
     $deleteById = Geodata::deleteById($id);
 
@@ -56,7 +57,17 @@ Route::get('/geodata/edit/{id}', function($id){
     return view("geodata/edit", ['geodata' => $geodata]);
 })->name('geodata.edit');
 
-Route::post('/geodata/edit/{id}', function($id){
-    Geodata::update();
+Route::post('/geodata/edit/{id}', function(Request $request, $id){
+
+    $params=[
+        'name' => $request->get('name'),
+        'latitude' => $request->get('latitude'),
+        'longitude' => $request->get('longitude')  
+    ];
+
+    $geodata= Geodata::find($id);
+    Geodata::updateById($params, $id);
+
+    return redirect('/geodata/list');
 })->name('geodata.update');
 

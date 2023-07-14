@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class Geodata extends Model
 {
@@ -34,15 +35,15 @@ class Geodata extends Model
         return view("geodata/edit/", ['geodata' => $geodata]);
     }
 
-    public function update(Request $request, $id): Response
+    public static function updateById($params, $id)
     {
-        $geodata = Geodata::find($request->id);
-        $name = $request->input('name');
-        $latitude = $request->input('latitude');
-        $longitude = $request->input('longitude');
+        $geodata = Geodata::find($id); 
+        $geodata->name = $params['name'];        
+        $geodata->latitude = $params ['latitude'];
+        $geodata->longitude = $params ['longitude'];
+
         $geodata->save();
 
-        return redirect('/geodata/list');
     }
     
 

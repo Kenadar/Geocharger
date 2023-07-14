@@ -20,7 +20,7 @@
 
                     <form method="post" action="{{ route('geodata.edit', $geodata->id) }}" class="mt-6 space-y-6">
                         @csrf
-                        @method('patch')
+                        @method('post')
 
                         <div>
                             <x-input-label for="name" :value="__('Name')" />
