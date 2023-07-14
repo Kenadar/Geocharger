@@ -71,3 +71,6 @@ Route::post('/geodata/edit/{id}', function(Request $request, $id){
     return redirect('/geodata/list');
 })->name('geodata.update');
 
+Route::get('/geodata/create/create', function(){
+    return view('/geodata/create');
+})->name('geodata.create');
