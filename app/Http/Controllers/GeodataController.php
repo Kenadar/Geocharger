@@ -39,4 +39,13 @@ class GeodataController extends Controller
 
         return redirect('/geodata/list');
     } 
+    public function dayparting(){
+        $dayOfWeek = array('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun');
+        $hourOfDay = range(1,24);
+
+        foreach($dayOfWeek as $day){
+            foreach($hourOfDay as $hour){
+            }
+        }
+    }
 }

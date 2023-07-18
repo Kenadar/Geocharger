@@ -43,9 +43,6 @@ class Geodata extends Model
         $geodata->longitude = $params ['longitude'];
 
         $geodata->save();
-
     }
     
-    
-
 }
