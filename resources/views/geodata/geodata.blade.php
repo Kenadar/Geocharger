@@ -16,7 +16,7 @@
                             
                             <li>
                                 <?= $geodata->name; ?>
-                                <button class ='text-grey-900'><a href="/geodata/edit/{id}<?= $geodata->id;?>">edit</a></button>
+                                <button class ='inline-flex rounded text-gray-500 hover:text-grey-600'><a href="/geodata/edit/<?= $geodata->id;?>">edit</a></button>
                                 <button class ='text-red-400 ' ><a href="/geodata/delete/<?= $geodata->id; ?>" >delete</a></button>
                             </li>
                             @endforeach

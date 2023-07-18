@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Geodata;
 use Illuminate\Http\Request;
 use Validator;
-use Illuminate\Http\JsonResponse;
+// use Illuminate\Http\Response;
+use Illuminate\Http\RedirectResponse;
 
 class GeodataController extends Controller
 {
-    public function store(Request $request): JsonResponse
+    public static function store(Request $request): RedirectResponse
     {
         $validated = Validator::make($request->all(), [
             'name' => 'required|string',
@@ -19,7 +20,7 @@ class GeodataController extends Controller
 
 
         if ($validated->fails()) {
-            return response()->json(['status'=> 'failed']);
+            return redirect('/geodata/list'); 
         }
 
         $alreadyCreated = Geodata::where('latitude', '=', $request->get('latitude'))
@@ -28,8 +29,7 @@ class GeodataController extends Controller
             
 
         if($alreadyCreated){
-            return response()->json(['status'=>'Geodata already exist! Create new!']);
-        }
+            return redirect('/geodata/list');        }
 
         Geodata::create([
             'name' => $request->get('name'),
@@ -37,6 +37,6 @@ class GeodataController extends Controller
             'longitude' => $request->get('longitude')
         ]);
 
-        return response()->json(['status' => 'success']);
+        return redirect('/geodata/list');
     } 
 }

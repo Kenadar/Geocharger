@@ -32,17 +32,16 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
-Route::get('/geodata/create', function(){
-    return view('geodata');
+Route::get('/geodata', function(){
+    $geodata = Geodata::all();
+
+    return view('geodata/geodata', ['geodatas' => $geodata]);
 })->middleware(['auth', 'verified'])->name('geodata');
 
 Route::get('/geodata/list', function () {
-
     $geodata = Geodata::all();
 
-    return view('geodata/geodata', [
-        'geodatas' => $geodata
-    ]);
+    return view('geodata/geodata', ['geodatas' => $geodata]);
 })->name('geodata.list');
 
 Route::get('/geodata/delete/{id}', function($id){
@@ -72,5 +71,9 @@ Route::post('/geodata/edit/{id}', function(Request $request, $id){
 })->name('geodata.update');
 
 Route::get('/geodata/create/create', function(){
-    return view('/geodata/create');
+    return view('geodata/create');
+})->name('geodata.create');
+
+Route::post('/geodata/create/create',[GeodataController::class, 'store'], function(){
+  
 })->name('geodata.create');

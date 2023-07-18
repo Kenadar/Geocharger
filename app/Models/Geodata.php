@@ -46,5 +46,6 @@ class Geodata extends Model
 
     }
     
+    
 
 }
