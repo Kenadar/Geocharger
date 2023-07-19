@@ -22,7 +22,10 @@ class Geodata extends Model
     {
         return $this->hasMany(Booking::class);
     }
-
+    public function dayparting() : HasMany
+    {
+        return $this->hasOne(Dayparting::class);
+    }
     public static function deleteById(int $id){
         $geodata = Geodata::find($id);
         $geodata->delete();
@@ -30,8 +33,7 @@ class Geodata extends Model
 
     public function edit(int $id){
         $geodata = Geodata::find($id);
-
-
+       
         return view("geodata/edit/", ['geodata' => $geodata]);
     }
 
@@ -41,6 +43,7 @@ class Geodata extends Model
         $geodata->name = $params['name'];        
         $geodata->latitude = $params ['latitude'];
         $geodata->longitude = $params ['longitude'];
+
 
         $geodata->save();
     }

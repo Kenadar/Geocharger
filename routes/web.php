@@ -57,7 +57,6 @@ Route::get('/geodata/edit/{id}', function($id){
 })->name('geodata.edit');
 
 Route::post('/geodata/edit/{id}', function(Request $request, $id){
-
     $params=[
         'name' => $request->get('name'),
         'latitude' => $request->get('latitude'),

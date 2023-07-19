@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('geodata_id');
             $table->foreign('geodata_id')->references('id')->on('geodatas');
-            $table->string('dayparting');
+            $table->string('dayparting', 3000);
             $table->timestamps();
         });
     }

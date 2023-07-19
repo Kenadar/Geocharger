@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Geodata;
 use Illuminate\Http\Request;
 use Validator;
-// use Illuminate\Http\Response;
 use Illuminate\Http\RedirectResponse;
+use App\Models\Dayparting;
 
 class GeodataController extends Controller
 {
@@ -31,21 +31,22 @@ class GeodataController extends Controller
         if($alreadyCreated){
             return redirect('/geodata/list');        }
 
-        Geodata::create([
+        $geodata = Geodata::create([
             'name' => $request->get('name'),
             'latitude' => $request->get('latitude'),
             'longitude' => $request->get('longitude')
         ]);
+        $dayparting=$request->get('dayparting');
+        $json=json_encode($dayparting);
+
+        Dayparting::create([
+            'geodata_id'=>$geodata->id,
+            'dayparting'=>$json
+        ]);
 
         return redirect('/geodata/list');
     } 
-    public function dayparting(){
-        $dayOfWeek = array('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun');
-        $hourOfDay = range(1,24);
 
-        foreach($dayOfWeek as $day){
-            foreach($hourOfDay as $hour){
-            }
-        }
-    }
+    
+    
 }

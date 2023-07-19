@@ -33,11 +33,31 @@
                             <x-text-input id="longitude" class="block mt-1 w-full" type="number" name="longitude"/>
                             <x-input-error :messages="$errors->get('longitude')" class="mt-2" />
                         </div>
+
+                        <div>
+                            
+                            <?php 
+                            $dayOfWeek = array('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun');
+                            $hourOfDay = range(1,24); 
+                            ?>
+                            @foreach($dayOfWeek as $day)
+                                @foreach($hourOfDay as $hour)
+                                    <?php $dayparting= $day . $hour?>
+                                    <label for="dayparting"><?php echo $dayparting?></label>
+                                    <input type="checkbox" name="dayparting[]" value=" <?php echo $dayparting?> ">
+                                @endforeach
+
+                            @endforeach
+
+                            
+                        </div>
+
                         <div class="flex items-center justify-end mt-4">
                             <x-primary-button class="ml-3">
                                 {{ __('Create') }}
                             </x-primary-button>
                         </div>
+                        
                  </div>
             </div>
         </div>
