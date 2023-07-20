@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Geodata;
 use App\Http\Controllers\GeodataController;
 use Illuminate\Http\Request;
+use App\Models\Dayparting;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,7 +47,7 @@ Route::get('/geodata/list', function () {
 
 Route::get('/geodata/delete/{id}', function($id){
     $deleteById = Geodata::deleteById($id);
-
+    // $deleteById = Dayparting::deleteById($id);
     return redirect('/geodata/list');
 });
 
@@ -60,11 +61,14 @@ Route::post('/geodata/edit/{id}', function(Request $request, $id){
     $params=[
         'name' => $request->get('name'),
         'latitude' => $request->get('latitude'),
-        'longitude' => $request->get('longitude')  
+        'longitude' => $request->get('longitude'),
+        'dayparting' => $request->get('dayparting')
     ];
 
     $geodata= Geodata::find($id);
     Geodata::updateById($params, $id);
+
+    Dayparting::updateById($params, $id);
 
     return redirect('/geodata/list');
 })->name('geodata.update');
