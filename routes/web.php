@@ -46,8 +46,9 @@ Route::get('/geodata/list', function () {
 })->name('geodata.list');
 
 Route::get('/geodata/delete/{id}', function($id){
+    $deleteDayparting = Dayparting::deleteById($id);
+
     $deleteById = Geodata::deleteById($id);
-    // $deleteById = Dayparting::deleteById($id);
     return redirect('/geodata/list');
 });
 
