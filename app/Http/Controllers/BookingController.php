@@ -10,6 +10,7 @@ use Illuminate\Routing\Controller as Controller;
 use DateInterval;
 use DatePeriod;
 use DateTime;
+use App\Models\Dayparting;
 
 class BookingController extends Controller
 {
@@ -54,6 +55,18 @@ class BookingController extends Controller
         ]);
         }
 
+        // $id = Geodata::find('id');
+        // $fobiddenDayparting = Dayparting::where('geodata_id', '=', $id)
+        // ->where();
+
+        // $dayOfWeek = array('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun');
+        // $hourOfDay = range(1,24); 
+
+        // foreach($dayOfWeek as $day){
+        // foreach($hourOfDay as $hour){
+        //      $dayparting= $day . $hour;
+        //     }
+        // }
 
         return response()->json(['status' => 'success']);
     } 
