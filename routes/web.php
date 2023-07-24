@@ -84,5 +84,10 @@ Route::post('/geodata/create/create',[GeodataController::class, 'store'], functi
 
 Route::get('/booking', function (Request $request){
     $geodata = Geodata::all();
-    return view('geodata/booking', ['geodatas' => $geodata]);
+    return view('booking/booking', ['geodatas' => $geodata]);
 })->name('booking');
+
+Route::get('/booking/create/{id}', function(Request $request, $id){
+    $geodata= Geodata::find($id);
+    return view('booking/create',['geodata' => $geodata]);
+})->name('booking.create');

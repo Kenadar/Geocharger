@@ -14,9 +14,9 @@
                 <ul>
                 @foreach ($geodatas as $geodata) 
                             
-                    <li class='text-grey-400'>
+                    <li>
                     <?= $geodata->name;?>
-                    <button class ='text-white ' ><a href="<?= $geodata->id; ?>" >book</a></button>
+                    <button class ='text-white ' ><a href="/booking/create/<?= $geodata->id; ?>" >book</a></button>
                     </li>
                     @endforeach                        
                 </ul>
