@@ -42,7 +42,7 @@ class BookingController extends Controller
             
 
         if($alreadyBooked){
-            return response()->json(['status'=>'already booked!']);
+            // return response()->json(['status'=>'already booked!']);
         }
 
         foreach($intervalrange as $interval){
@@ -55,20 +55,7 @@ class BookingController extends Controller
         ]);
         }
 
-        // $id = Geodata::find('id');
-        // $fobiddenDayparting = Dayparting::where('geodata_id', '=', $id)
-        // ->where();
-
-        // $dayOfWeek = array('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun');
-        // $hourOfDay = range(1,24); 
-
-        // foreach($dayOfWeek as $day){
-        // foreach($hourOfDay as $hour){
-        //      $dayparting= $day . $hour;
-        //     }
-        // }
-
-        return response()->json(['status' => 'success']);
+        // return response()->json(['status' => 'success']);
     } 
 
     function roundMinutes($minutes) {
