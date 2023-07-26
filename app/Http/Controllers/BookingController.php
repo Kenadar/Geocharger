@@ -72,7 +72,9 @@ class BookingController extends Controller
 
     function getTimestamp($date1, $date2){
         $date1 = "start_time";
-        $date2 = ""
+        $date2 = "end_time";
+        $timestamp1 = date("YYYY-MM-DDThh:mm", strtotime($date1));
+        $timestamp2 = date("YYYY-MM-DDThh:mm", strtotime($date2));
     }
     
     function getInterval(int $timestamp): int|float

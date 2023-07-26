@@ -13,7 +13,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                 <div class="max-w-xl">
-                    <form method="POST" action="{{ route('geodata.create') }}">
+                    <form method="POST" action="{{ route('booking') }}">
                      @csrf
 
                      <div class="mt-4">
@@ -40,11 +40,6 @@
 
                                 <input  type="datetime-local" id="start_time"
                                 name="start_time" value="2018-06-12T19:30">
-                                <?php $date1= "start_time";
-                                $timestamp1 = strtotime($date1);
-                                echo $date1;
-                                ?>
-
                         </div>
 
                             <div>
