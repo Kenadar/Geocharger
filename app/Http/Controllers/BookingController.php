@@ -25,8 +25,9 @@ class BookingController extends Controller
             'end_time' => 'required|integer'
         ]);
 
+       
         if ($validated->fails()) {
-            return response()->json(['status'=> 'failed']);
+            // return response()->json(['status'=> 'failed']);
         }
 
         $start_interval = $this -> getInterval($request->get('start_time'));
@@ -67,6 +68,11 @@ class BookingController extends Controller
         }
     
         return $roundedMinutes;
+    }
+
+    function getTimestamp($date1, $date2){
+        $date1 = "start_time";
+        $date2 = ""
     }
     
     function getInterval(int $timestamp): int|float

@@ -40,7 +40,12 @@
 
                                 <input  type="datetime-local" id="start_time"
                                 name="start_time" value="2018-06-12T19:30">
-                            </div>
+                                <?php $date1= "start_time";
+                                $timestamp1 = strtotime($date1);
+                                echo $date1;
+                                ?>
+
+                        </div>
 
                             <div>
                                 <label for="end_time">Choose your end booking date and time:</label><br>

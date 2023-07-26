@@ -16,9 +16,10 @@
                             
                     <li>
                     <?= $geodata->name;?>
-                    <button class ='text-white ' ><a href="/booking/create/<?= $geodata->id; ?>" >book</a></button>
                     </li>
-                    @endforeach                        
+                    @endforeach         
+                    <x-primary-button><a href= '/booking/create/'>{{ __('Create') }}</a></x-primary-button>
+               
                 </ul>
             </div>
         </div>
