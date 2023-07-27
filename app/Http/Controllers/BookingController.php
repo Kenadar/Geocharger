@@ -10,10 +10,16 @@ use Illuminate\Routing\Controller as Controller;
 use DateInterval;
 use DatePeriod;
 use DateTime;
+use App\Models\Geodata;
 use App\Models\Dayparting;
 
 class BookingController extends Controller
 {
+    public function index(Request $request) {
+        $geodata = Geodata::all();
+
+        return view('booking/create',['geodatas' => $geodata]);
+    }
 
     public function store(Request $request): JsonResponse
     {
@@ -24,14 +30,15 @@ class BookingController extends Controller
             'start_time' => 'required|integer',
             'end_time' => 'required|integer'
         ]);
+        
+        $timestampArray = $this->getTimestamp($request['start_time'], $request['end_time']);
 
-       
         if ($validated->fails()) {
             // return response()->json(['status'=> 'failed']);
         }
 
-        $start_interval = $this -> getInterval($request->get('start_time'));
-        $end_interval = $this -> getInterval($request->get('end_time'));
+        $start_interval = $this -> getInterval($timestampArray['start_ts']);
+        $end_interval = $this -> getInterval($timestampArray['end_ts']);
         $intervalrange = range($start_interval, $end_interval);
 
         
@@ -43,7 +50,7 @@ class BookingController extends Controller
             
 
         if($alreadyBooked){
-            // return response()->json(['status'=>'already booked!']);
+            return response()->json(['status'=>'already booked!']);
         }
 
         foreach($intervalrange as $interval){
@@ -56,7 +63,7 @@ class BookingController extends Controller
         ]);
         }
 
-        // return response()->json(['status' => 'success']);
+        return response()->json(['status' => 'success']);
     } 
 
     function roundMinutes($minutes) {
@@ -70,11 +77,11 @@ class BookingController extends Controller
         return $roundedMinutes;
     }
 
-    function getTimestamp($date1, $date2){
-        $date1 = "start_time";
-        $date2 = "end_time";
-        $timestamp1 = date("YYYY-MM-DDThh:mm", strtotime($date1));
-        $timestamp2 = date("YYYY-MM-DDThh:mm", strtotime($date2));
+    function getTimestamp(string $date1, string $date2) {
+        return [
+            'start_ts' => strtotime($date1),
+            'end_ts' => strtotime($date2),
+        ];
     }
     
     function getInterval(int $timestamp): int|float
@@ -86,5 +93,5 @@ class BookingController extends Controller
     }
     
 
-    }
+}
 
