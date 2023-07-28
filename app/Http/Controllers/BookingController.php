@@ -63,6 +63,12 @@ class BookingController extends Controller
         ]);
         }
 
+        // $daypartingArray = $this->bookedDayparting()->isEmpty();
+        // if($daypartingArray){
+        //     return response()->json(['status' => 'You can not book this time!']);
+        // }
+
+
         return response()->json(['status' => 'success']);
     } 
 
@@ -92,6 +98,13 @@ class BookingController extends Controller
         return $interval;
     }
     
+    // function bookedDayparting(){
+    //     $dayparting=Dayparing::get('dayparting');
+    //     $json=json_decode($dayparting);
+    //     foreach($dayparting as $day){};
+
+    //     return $day;
+    // }
 
 }
 
