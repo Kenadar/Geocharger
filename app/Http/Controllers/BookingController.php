@@ -30,8 +30,14 @@ class BookingController extends Controller
             'start_time' => 'required|integer',
             'end_time' => 'required|integer'
         ]);
+
         
         $timestampArray = $this->getTimestamp($request['start_time'], $request['end_time']);
+        
+        // $decode = $this->bookedDayparting();
+        // dd($decode);
+
+
 
         if ($validated->fails()) {
             // return response()->json(['status'=> 'failed']);
@@ -103,16 +109,27 @@ class BookingController extends Controller
 
         $time1 = new DateTime();
         $time1->setTimestamp($date1);
-        $time1->format('D H');
+        $day1= $time1->format('D');
+        $hour1= $time1->format('H');
 
         $time2 = new DateTime();
         $time2->setTimestamp($date2);
-        $time2->format('D H');
+        $day2= $time2->format('D');
+        $hour2= $time2->format('H');
 
-        $json=json_decode($dayparting);
-        foreach($dayparting as $day){};
+        $json=json_decode($dayparting,true);
+        // foreach($dayparting as $day){};
 
-        return $day;
+
+        // $avalible = Dayparting::where();
+
+        // if($day1 . $hour1 === $date1){
+        //     return response()->json(['status' => 'avalible dayparting']);
+        // }else{
+        //     return response()->json(['status' => 'you can not book this dayparting']);
+
+        // }
+
     }
 
 }
