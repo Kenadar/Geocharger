@@ -98,13 +98,22 @@ class BookingController extends Controller
         return $interval;
     }
     
-    // function bookedDayparting(){
-    //     $dayparting=Dayparing::get('dayparting');
-    //     $json=json_decode($dayparting);
-    //     foreach($dayparting as $day){};
+    function bookedDayparting(string $date1, string $date2){
+        $dayparting= Dayparing::where('geodata_id', '=', $request->get('geodata_id'));
 
-    //     return $day;
-    // }
+        $time1 = new DateTime();
+        $time1->setTimestamp($date1);
+        $time1->format('D H');
+
+        $time2 = new DateTime();
+        $time2->setTimestamp($date2);
+        $time2->format('D H');
+
+        $json=json_decode($dayparting);
+        foreach($dayparting as $day){};
+
+        return $day;
+    }
 
 }
 
