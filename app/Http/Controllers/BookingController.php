@@ -34,8 +34,8 @@ class BookingController extends Controller
         
         $timestampArray = $this->getTimestamp($request['start_time'], $request['end_time']);
         
-        // $decode = $this->bookedDayparting();
-        // dd($decode);
+        $decode = $this->bookedDayparting($timestampArray['start_ts'], $timestampArray['end_ts'], $request->get('geodata_id'));
+        // dd([$dayHour1,$dayArray]);
 
 
 
@@ -69,11 +69,6 @@ class BookingController extends Controller
         ]);
         }
 
-        // $daypartingArray = $this->bookedDayparting()->isEmpty();
-        // if($daypartingArray){
-        //     return response()->json(['status' => 'You can not book this time!']);
-        // }
-
 
         return response()->json(['status' => 'success']);
     } 
@@ -104,20 +99,37 @@ class BookingController extends Controller
         return $interval;
     }
     
-    function bookedDayparting(string $date1, string $date2){
-        $dayparting= Dayparing::where('geodata_id', '=', $request->get('geodata_id'));
+    function bookedDayparting(int $date1, int $date2, int $geodata_id){
+        $dayparting= Dayparting::where('geodata_id', '=', $geodata_id)->first();
 
         $time1 = new DateTime();
         $time1->setTimestamp($date1);
         $day1= $time1->format('D');
         $hour1= $time1->format('H');
+        $dayHour1 = $day1 . $hour1;
 
         $time2 = new DateTime();
         $time2->setTimestamp($date2);
         $day2= $time2->format('D');
         $hour2= $time2->format('H');
+        $dayHour2 = $day2 . $hour2;
 
-        $json=json_decode($dayparting,true);
+        $dayArray=json_decode($dayparting->dayparting,true);
+
+        $hour1Allowed = in_array($dayHour1, $dayArray);
+        $hour2Allowed = in_array($dayHour2, $dayArray);
+        
+        $allowedTime = $hour1Allowed && $hour2Allowed;
+        // dd($allowedTime);
+
+        return false;
+
+
+
+
+
+
+
         // foreach($dayparting as $day){};
 
 
@@ -132,5 +144,6 @@ class BookingController extends Controller
 
     }
 
+    
 }
 
