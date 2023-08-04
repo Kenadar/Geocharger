@@ -35,9 +35,10 @@ class BookingController extends Controller
         $timestampArray = $this->getTimestamp($request['start_time'], $request['end_time']);
         
         $decode = $this->bookedDayparting($timestampArray['start_ts'], $timestampArray['end_ts'], $request->get('geodata_id'));
-        // dd([$dayHour1,$dayArray]);
 
-
+        if ($decode == false){
+            return response()->json(['status' => 'You can not book this time!']);
+        }
 
         if ($validated->fails()) {
             // return response()->json(['status'=> 'failed']);
@@ -120,28 +121,9 @@ class BookingController extends Controller
         $hour2Allowed = in_array($dayHour2, $dayArray);
         
         $allowedTime = $hour1Allowed && $hour2Allowed;
-        // dd($allowedTime);
 
-        return false;
-
-
-
-
-
-
-
-        // foreach($dayparting as $day){};
-
-
-        // $avalible = Dayparting::where();
-
-        // if($day1 . $hour1 === $date1){
-        //     return response()->json(['status' => 'avalible dayparting']);
-        // }else{
-        //     return response()->json(['status' => 'you can not book this dayparting']);
-
-        // }
-
+         return $allowedTime;
+        
     }
 
     
