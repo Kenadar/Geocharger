@@ -28,12 +28,43 @@
                             <x-input-error :messages="$errors->get('lessor')" class="mt-2" />
                         </div>
 
-                        <div class="mt-4">
+                        {{-- <div class="mt-4">
                             <x-input-label for="geodata_id" :value="__('Geodata ID')" />
                             <x-text-input id="geodata_id" class="block mt-1 w-full" type="number" name="geodata_id"/>
                             <x-input-error :messages="$errors->get('geodata_id')" class="mt-2" />
-                        </div>
+                        </div> --}}
 
+                        <div>
+                            <label for="city">Обери область:</label>
+                            <select id="city" name="city">
+
+                               
+                               <option value="city" >Точка
+                                </option>
+            
+                                @foreach ($cities as $city) 
+            
+                                <option value="{{ $city->id}}">{{ $geodata->city }}</option>
+                                @endforeach
+                              
+                            </select>
+
+                        </div>
+                            <label fot="geodata">Обери точку:</label>
+                            <select id="geodata" name="geodata">
+
+                                <option value="geodata" >Точка
+                                </option>
+            
+                                @foreach ($geodatas as $geodata) 
+            
+                                <option value="{{ $geodata->id}}">{{ $geodata->id }}</option>
+            
+                                @endforeach
+
+                            </select>
+                        <div>
+                        </div>
                         
                         <div>
                                 <label for="start_time">Choose your start booking date and time:</label><br>
@@ -48,8 +79,6 @@
                                 <input  type="datetime-local" id="end_time"
                                 name="end_time" value="2018-06-12T19:30">
                             </div>
-
-                            
 
                             <div class="flex items-center justify-end mt-4">
                                 <x-primary-button class="ml-3">

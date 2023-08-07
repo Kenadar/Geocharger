@@ -12,11 +12,13 @@ use DatePeriod;
 use DateTime;
 use App\Models\Geodata;
 use App\Models\Dayparting;
+use App\Models\Cities;
 
 class BookingController extends Controller
 {
     public function index(Request $request) {
         $geodata = Geodata::all();
+        $cities = Cities::all();
 
         return view('booking/create',['geodatas' => $geodata]);
     }
@@ -33,12 +35,13 @@ class BookingController extends Controller
 
         
         $timestampArray = $this->getTimestamp($request['start_time'], $request['end_time']);
-        
         $decode = $this->bookedDayparting($timestampArray['start_ts'], $timestampArray['end_ts'], $request->get('geodata_id'));
+
 
         if ($decode == false){
             return response()->json(['status' => 'You can not book this time!']);
         }
+
 
         if ($validated->fails()) {
             // return response()->json(['status'=> 'failed']);
