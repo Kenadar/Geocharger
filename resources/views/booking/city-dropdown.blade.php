@@ -1,8 +1,33 @@
-<label for="city">Select a City:</label>
-<select name="city" id="city">
-    <option value="javascript">JavaScript</option>
-    <option value="python">Python</option>
-    <option value="c++">C++</option>
-    <option value="java">Java</option>
-  </select>
-  
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">&nbsp;</div>
+      <div class="col-md-6">
+          <select name="select_box" class="form-select" id="select_box">
+              <option value="">Обери область</option>
+              <?php 
+              foreach($cities as $city)
+              {
+                  echo '<option value="'.$city["city"].'">'.$city["city"].'</option>';
+              }
+              ?>  
+          </select>
+      </div>
+      <div class="col-md-3">&nbsp;</div>
+  </div>      
+  <br />
+  <br />
+</div>
+</body>
+</html>
+
+<script>
+
+var select_box_element = document.querySelector('#select_box');
+
+dselect(select_box_element, {
+search: true
+});
+
+</script>
+
+

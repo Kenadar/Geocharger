@@ -26,6 +26,11 @@ class Geodata extends Model
     {
         return $this->hasOne(Dayparting::class);
     }
+    public function city(): HasMany 
+    {
+        return $this->HasMany(Cities::class);
+    }
+
     public static function deleteById(int $id){
         $geodata = Geodata::find($id);
         $geodata->delete();

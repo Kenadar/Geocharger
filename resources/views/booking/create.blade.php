@@ -28,34 +28,35 @@
                             <x-input-error :messages="$errors->get('lessor')" class="mt-2" />
                         </div>
 
-                        {{-- <div class="mt-4">
+                        <div class="mt-4">
                             <x-input-label for="geodata_id" :value="__('Geodata ID')" />
                             <x-text-input id="geodata_id" class="block mt-1 w-full" type="number" name="geodata_id"/>
                             <x-input-error :messages="$errors->get('geodata_id')" class="mt-2" />
-                        </div> --}}
+                        </div>
 
+                       
+                        
                         <div>
                             <label for="city">Обери область:</label>
                             <select id="city" name="city">
-
-                               
-                               <option value="city" >Точка
+                               <option value="city" >Область
                                 </option>
-            
+                                
                                 @foreach ($cities as $city) 
             
-                                <option value="{{ $city->id}}">{{ $geodata->city }}</option>
+                                <option value="{{ $city->id}}">{{ $city->city }}</option>
                                 @endforeach
                               
                             </select>
+                            </div> 
+                            
 
-                        </div>
                             <label fot="geodata">Обери точку:</label>
                             <select id="geodata" name="geodata">
 
-                                <option value="geodata" >Точка
+                                <option value="geodata" > Точка
                                 </option>
-            
+                                
                                 @foreach ($geodatas as $geodata) 
             
                                 <option value="{{ $geodata->id}}">{{ $geodata->id }}</option>

@@ -18,9 +18,10 @@ class BookingController extends Controller
 {
     public function index(Request $request) {
         $geodata = Geodata::all();
-        $cities = Cities::all();
+        $city = Cities::all();
+        // 'cities' => $city->get();
 
-        return view('booking/create',['geodatas' => $geodata]);
+        return view('booking/create',['geodatas' => $geodata, 'cities' => $city]);
     }
 
     public function store(Request $request): JsonResponse

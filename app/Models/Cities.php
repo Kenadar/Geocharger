@@ -14,4 +14,8 @@ class Cities extends Model
     ];
 
     protected $table = 'cities';
+
+    public function geodata(): BelongsTo {
+        return $this->BelonпsTo(Geodata::class);
+    }
 }
