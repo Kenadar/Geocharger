@@ -23,16 +23,11 @@
                         </div>
 
                         <div class="mt-4">
-                            <x-input-label for="latitude" :value="__('Latitude')" />
-                            <x-text-input id="latitude" class="block mt-1 w-full" type="number" name="latitude"/>
-                            <x-input-error :messages="$errors->get('latitude')" class="mt-2" />
+                            <x-input-label for="address" :value="__('Address')" />
+                            <x-text-input id="address" class="block mt-1 w-full" type="string" name="address"/>
+                            <x-input-error :messages="$errors->get('address')" class="mt-2" />
                         </div>
 
-                        <div class="mt-4">
-                            <x-input-label for="longitude" :value="__('longitude')" />
-                            <x-text-input id="longitude" class="block mt-1 w-full" type="number" name="longitude"/>
-                            <x-input-error :messages="$errors->get('longitude')" class="mt-2" />
-                        </div>
 
                         <div>
                             

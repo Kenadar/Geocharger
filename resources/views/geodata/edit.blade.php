@@ -29,16 +29,11 @@
                         </div>
 
                         <div>
-                            <x-input-label for="latitude" :value="__('Latitude')" />
-                            <x-text-input id="latitude" name="latitude" type="number" class="mt-1 block w-full" :value="old('latitude', $geodata->latitude)"/>
-                            <x-input-error class="mt-2" :messages="$errors->get('latitude')" />
+                            <x-input-label for="address" :value="__('Address')" />
+                            <x-text-input id="address" name="address" type="number" class="mt-1 block w-full" :value="old('address', $geodata->address)"/>
+                            <x-input-error class="mt-2" :messages="$errors->get('address')" />
                             <div>
-                        <div>
-                            <x-input-label for="longitude" :value="__('Longitude')" />
-                            <x-text-input id="longitude" name="longitude" type="number" class="mt-1 block w-full" :value="old('longitude', $geodata->longitude)" />
-                            <x-input-error class="mt-2" :messages="$errors->get('longitude')" />
-                    
-                        </div>
+                       
 
                         <div>
                             <form>

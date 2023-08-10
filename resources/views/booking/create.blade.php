@@ -36,7 +36,7 @@
 
                        
                         
-                        <div>
+                        {{-- <div>
                             <label for="city">Обери область:</label>
                             <select id="city" name="city">
                                <option value="city" >Область
@@ -63,8 +63,9 @@
             
                                 @endforeach
 
-                            </select>
+                            </select> --}}
                         <div>
+                            @include('booking.address-dropdown')
                         </div>
                         
                         <div>

@@ -14,8 +14,7 @@ class GeodataController extends Controller
     {
         $validated = Validator::make($request->all(), [
             'name' => 'required|string',
-            'latitude' => 'required|numeric',
-            'longitude' =>'required|numeric'
+            'address' => 'required|string',
         ]);
 
 
@@ -23,8 +22,7 @@ class GeodataController extends Controller
             return redirect('/geodata/list'); 
         }
 
-        $alreadyCreated = Geodata::where('latitude', '=', $request->get('latitude'))
-            ->where('longitude', '=', $request->get('longitude'))
+        $alreadyCreated = Geodata::where('address', '=', $request->get('address'))
             ->get()->isNotEmpty();
             
 
@@ -34,8 +32,7 @@ class GeodataController extends Controller
 
         $geodata = Geodata::create([
             'name' => $request->get('name'),
-            'latitude' => $request->get('latitude'),
-            'longitude' => $request->get('longitude')
+            'address' => $request->get('address'),
         ]);
         $dayparting=$request->get('dayparting');
         $json=json_encode($dayparting);
