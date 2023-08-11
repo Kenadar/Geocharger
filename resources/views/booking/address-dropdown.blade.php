@@ -60,7 +60,7 @@
 <body style="background-color:white;">
 
 <div class="dropdown">
-  <button id="myDropdown" onclick="myFunction()" class="dropbtn">Address</button>
+  <button onclick="myFunction(event)" class="dropbtn">Address</button>
   <div id="myDropdown" class="dropdown-content">
     <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
     <ul>
@@ -74,8 +74,13 @@
 <script>
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
+function myFunction(event) {
+  event.stopPropagation();
+  event.preventDefault();
+
+  let el = document.getElementById("myDropdown")
+  console.log(el)
+  el.classList.toggle("show");
 }
 
 function filterFunction() {
@@ -84,13 +89,14 @@ function filterFunction() {
   filter = input.value.toUpperCase();
   div = document.getElementById("myDropdown");
   li = div.getElementsByTagName("li");
+  console.log(li)
  
-  for (i = 0; i < a.length; i++) {
-    txtValue = a[i].textContent || a[i].innerText;
+  for (i = 0; i < li.length; i++) {
+    txtValue = li[i].textContent || li[i].innerText;
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      a[i].style.display = "";
+      li[i].style.display = "";
     } else {
-      a[i].style.display = "none";
+      li[i].style.display = "none";
     }
   }
 }
