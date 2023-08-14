@@ -59,44 +59,46 @@
 </head>
 <body style="background-color:white;">
 
-<div class="dropdown">
-  <button onclick="myFunction(event)" class="dropbtn">Address</button>
-  <div id="myDropdown" class="dropdown-content">
+{{-- <div class="dropdown"> --}}
+  {{-- <button onclick="myFunction(event)" class="dropbtn">Address</button>
+  <div id="myDropdown" class="dropdown-content"> --}}
     <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-    <ul>
-      @foreach ($geodatas as $geodata)
-        <li>{{ $geodata->address }}</li>
+    <select class="form-control" name="geodata">
+      @foreach($geodatas as $geodata) 
+        <option id="option" value="<?php echo $geodata['id']; ?>"<?php if(isset($_GET['geodata']) && $_GET['geodata'] == $geodata['id']) { echo ' selected="selected"'; } ?>><?php echo $geodata['address']; ?></option>
       @endforeach
-    </ul>
+    </select>
   </div>
-</div>
+{{-- </div> --}}
+
+
 
 <script>
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
-function myFunction(event) {
-  event.stopPropagation();
-  event.preventDefault();
+// function myFunction(event) {
+//   event.stopPropagation();
+//   event.preventDefault();
 
-  let el = document.getElementById("myDropdown")
-  console.log(el)
-  el.classList.toggle("show");
-}
+//   let el = document.getElementById("myDropdown")
+//   console.log(el)
+//   el.classList.toggle("show");
+// }
 
 function filterFunction() {
-  var input, filter, ul, li, a, i;
+  var input, filter, option, select, a, i;
   input = document.getElementById("myInput");
   filter = input.value.toUpperCase();
-  div = document.getElementById("myDropdown");
-  li = div.getElementsByTagName("li");
-  console.log(li)
+  // div = document.getElementById("myDropdown");
+  option = div.getElementsByTagName("option");
+  console.log(option)
  
-  for (i = 0; i < li.length; i++) {
-    txtValue = li[i].textContent || li[i].innerText;
+  for (i = 0; i < option.length; i++) {
+    txtValue = option[i].textContent || option[i].innerText;
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      li[i].style.display = "";
+      option[i].style.display = "";
     } else {
-      li[i].style.display = "none";
+      option[i].style.display = "none";
     }
   }
 }
