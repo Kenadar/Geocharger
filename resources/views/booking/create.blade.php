@@ -35,37 +35,8 @@
                         </div>
 
                        
-                        
-                        {{-- <div>
-                            <label for="city">Обери область:</label>
-                            <select id="city" name="city">
-                               <option value="city" >Область
-                                </option>
-                                
-                                @foreach ($cities as $city) 
-            
-                                <option value="{{ $city->id}}">{{ $city->city }}</option>
-                                @endforeach
-                              
-                            </select>
-                            </div> 
-                            
-
-                            <label fot="geodata">Обери точку:</label>
-                            <select id="geodata" name="geodata">
-
-                                <option value="geodata" > Точка
-                                </option>
-                                
-                                @foreach ($geodatas as $geodata) 
-            
-                                <option value="{{ $geodata->id}}">{{ $geodata->id }}</option>
-            
-                                @endforeach
-
-                            </select> --}}
                         <div>
-                            @include('booking.address-dropdown')
+                            @include('booking.dropdown-ajax')
                         </div>
                         
                         <div>

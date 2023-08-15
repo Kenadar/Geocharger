@@ -19,7 +19,7 @@ class BookingController extends Controller
     public function index(Request $request) {
         $geodata = Geodata::all();
         $city = Cities::all();
-        // 'cities' => $city->get();
+        // dd($geodata);
 
         return view('booking/create',['geodatas' => $geodata, 'cities' => $city]);
     }
@@ -34,7 +34,6 @@ class BookingController extends Controller
             'end_time' => 'required|integer'
         ]);
 
-        
         $timestampArray = $this->getTimestamp($request['start_time'], $request['end_time']);
         $decode = $this->bookedDayparting($timestampArray['start_ts'], $timestampArray['end_ts'], $request->get('geodata_id'));
 
