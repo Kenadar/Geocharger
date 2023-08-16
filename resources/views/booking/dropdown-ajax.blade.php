@@ -11,15 +11,13 @@
 </head>
 <body>
     <!-- Dropdown --> 
-<select id='address' style='width: 200px;'>
+<select id='address' style='width: 200px;' name='geodata_id'>
     @foreach($geodatas as $geodata) 
-    <option id="option"
-        value="<?php echo $geodata['id']; ?>"
-        <?php if(isset($_GET['geodata']) && $_GET['geodata'] == $geodata['id']) { echo ' selected="selected"'; } ?>>
+    <option
+        value="<?php echo $geodata['id']; ?>">
         <?php echo $geodata['address']; ?>
     </option>
   @endforeach
-
 </select>
 <input type='button' value='Seleted option' id='but_read'>
 
@@ -35,7 +33,7 @@
  $('#but_read').click(function(){
      var username = $('#address option:selected').text();
      var userid = $('#address').val();
-
+console.log(username)
      $('#result').html("id : " + name + ", name : " + address);
 
  });
