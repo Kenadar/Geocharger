@@ -43,4 +43,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function booking() : HasMany
+    {   
+        return $this->HasMany(Booking::class);
+    }
+    public function geodata() : HasMany
+    {   
+        return $this->HasMany(Geodata::class);
+    }
 }

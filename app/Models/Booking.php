@@ -22,5 +22,9 @@ class Booking extends Model
     {   
         return $this->belongsTo(Geodata::class);
     }
+    public function user() : BelongsTo
+    {   
+        return $this->BelongsTo(User::class);
+    }
 
 }

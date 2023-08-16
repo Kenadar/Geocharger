@@ -21,14 +21,17 @@ class Geodata extends Model
     {
         return $this->hasMany(Booking::class);
     }
+    
     public function dayparting() : HasMany
     {
         return $this->hasOne(Dayparting::class);
     }
-    public function city(): HasMany 
+
+    public function user(): BelongsTo
     {
-        return $this->HasMany(Cities::class);
+        return $this->belongsTo(User::class, 'foreign_key', 'other_key');
     }
+    
 
     public static function deleteById(int $id){
         $geodata = Geodata::find($id);
