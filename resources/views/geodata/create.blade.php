@@ -27,12 +27,6 @@
                             <x-text-input id="address" class="block mt-1 w-full" type="string" name="address"/>
                             <x-input-error :messages="$errors->get('address')" class="mt-2" />
                         </div>
-                        <div class="mt-4">
-                            <x-input-label for="user_id" :value="__('Your Id')" />
-                            <?php $id = auth()->user()->id;?>
-                            <x-input-error :messages="$errors->get('user_id')" class="mt-2" />
-                        </div>
-
 
                         <div>
                             

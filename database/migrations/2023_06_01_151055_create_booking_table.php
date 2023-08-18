@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->integer('tenant');
-            $table->integer('lessor');
+            $table->integer('tenant_id');
+            $table->foreign('tenant_id')->references('id')->on('users');
+            $table->integer('lessor_id');
             $table->integer('geodata_id');
             $table->foreign('geodata_id')->references('id')->on('geodatas');
             $table->integer('interval');

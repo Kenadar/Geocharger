@@ -16,17 +16,17 @@
                     <form method="POST" action="{{ route('booking') }}">
                      @csrf
 
-                     <div class="mt-4">
-                            <x-input-label for="tenant" :value="('Tenant')" />
-                            <x-text-input id="tenant" class="block mt-1 w-full" type="string" name="tenant"/>
-                            <x-input-error :messages="$errors->get('tenant')" class="mt-2" />
-                        </div>
-
+                     {{-- <div class="mt-4">
+                            <x-input-label for="tenant_id" :value="('Tenant')" />
+                            <x-text-input id="tenant_id" class="block mt-1 w-full" type="string" name="tenant_id"/>
+                            <x-input-error :messages="$errors->get('tenant_id')" class="mt-2" />
+                        </div> --}}
+{{-- 
                         <div class="mt-4">
-                            <x-input-label for="lessor" :value="('Lessor')" />
-                            <x-text-input id="lessor" class="block mt-1 w-full" type="string" name="lessor"/>
-                            <x-input-error :messages="$errors->get('lessor')" class="mt-2" />
-                        </div>
+                            <x-input-label for="lessor_id" :value="('Lessor')" />
+                            <x-text-input id="lessor_id" class="block mt-1 w-full" type="string" name="lessor_id"/>
+                            <x-input-error :messages="$errors->get('lessor_id')" class="mt-2" />
+                        </div> --}}
 
                         <div class="mt-4">
                             <x-input-label for="geodata_id" :value="__('Address')" />

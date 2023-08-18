@@ -12,8 +12,8 @@ class Booking extends Model
     use HasFactory;
 
     protected $fillable = [
-        'tenant',
-        'lessor',
+        'tenant_id',
+        'lessor_id',
         'geodata_id',
         'interval'
     ];
