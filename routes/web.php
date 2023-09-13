@@ -83,3 +83,7 @@ Route::post('/geodata/create/create',[GeodataController::class, 'store'])->name(
 Route::get('/booking', [BookingController::class, 'index'])->name('booking');
 
 Route::post('/booking', [BookingController::class, 'store'])->name('booking');
+
+Route::get('/price', function(){
+return view('price');
+})->name('price');
