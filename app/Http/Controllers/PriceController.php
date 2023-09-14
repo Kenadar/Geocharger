@@ -9,6 +9,7 @@ class PriceController extends Controller
 {
     public function index(Request $request){
         $price = Price::all();
-        return view('price');
+
+        return view('price', ['prices' => $price,]);
     }
 }
