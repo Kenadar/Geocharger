@@ -7,6 +7,8 @@ use App\Http\Controllers\GeodataController;
 use Illuminate\Http\Request;
 use App\Models\Dayparting;
 use App\Http\Controllers\BookingController;
+use App\Models\Price;
+use App\Http\Controllers\PriceController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -84,6 +86,4 @@ Route::get('/booking', [BookingController::class, 'index'])->name('booking');
 
 Route::post('/booking', [BookingController::class, 'store'])->name('booking');
 
-Route::get('/price', function(){
-return view('price');
-})->name('price');
+Route::get('/price', [PriceController::class, 'index'])->name('price');
