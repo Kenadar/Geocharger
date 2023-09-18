@@ -1,6 +1,6 @@
 <div class="tab">
     <button class="tablinks" onmouseover="openHour(event, 'Hour')">Hour</button>
-    <button class="tablinks" onmouseover="openHour(event, 'kwH')">kW/h</button>
+    <button class="tablinks" onmouseover="openHour(event, 'kwH')">kW</button>
   </div>
   
 
