@@ -11,11 +11,19 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("You're on page with electricity prices!") }}
                     <div class='p-8'>
-                        @foreach ($prices as $price )
+                        {{-- @foreach ($prices as $price )
                             <ul>
                                 <li class=''><strong><?= $price->country; ?></strong>  <?= $price->price; ?></li>
-                            </ul>
-                        @endforeach
+                            </ul> --}}
+
+
+                            @include('price.tab-kWH')
+
+
+                        {{-- @endforeach
+                        <div>
+                        @include('price.calculator') --}}
+                        </div>
                     </div>
                 </div>
             </div>
