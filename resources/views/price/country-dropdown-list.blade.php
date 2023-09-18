@@ -11,6 +11,7 @@
 </head>
 <body>
     <!-- Dropdown --> 
+    <label>Location:</label>
 <select id='address' style='width: 200px;' name='geodata_id'>
     @foreach($prices as $price) 
     <option>

@@ -21,6 +21,12 @@
                         @include('price.country-dropdown-list')
 
                         </div>
+
+                        <div class="">
+
+                            @include('price.charger-type')
+    
+                            </div>
                     </div>
                 </div>
             </div>
