@@ -16,17 +16,23 @@
 
                         </div>
 
-                        <div class="py-12">
+                            <div class="py-12">
 
-                        @include('price.country-dropdown-list')
+                            @include('price.country-dropdown-list')
 
-                        </div>
-
-                        <div class="">
-
-                            @include('price.charger-type')
-    
                             </div>
+
+                                <div class="">
+
+                                    @include('price.charger-type')
+            
+                                </div>
+
+                                    <div class="py-12">
+
+                                        @include('price.slider')
+                
+                                    </div>
                     </div>
                 </div>
             </div>
