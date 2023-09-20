@@ -2,13 +2,17 @@
 <html lang="en">
 <head>
    
+
 </head>
 <body>
-    <!-- Dropdown --> 
-    <label>Charger type:</label>
-<select id='address' style='width: 200px;' name='geodata_id'>
-    <option>Regular Charger</option>
-    <option>Fast Charger</option>
+ 
+
+
+<select name="charger" id="charger" style='width: 200px;'>
+
+    @foreach ($charger as $type)
+        <option value=" {{ $type->id }} ">{{ $type->type }}</option>
+    @endforeach 
 </select>
 
 <br/>

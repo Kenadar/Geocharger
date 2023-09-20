@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 <head>
 
@@ -24,5 +24,7 @@ slider1.oninput = function() {
 
 
 </body>
-</html>
+</html> 
+
+
 
