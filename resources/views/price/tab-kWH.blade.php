@@ -28,8 +28,8 @@ ul#ulTab {
   list-style: none;
   margin-bottom: auto;
   padding: 0;
-  position: absolute;
-  top: 68vh;
+  position: relative;
+  margin-left: 15px;
 }
 
 

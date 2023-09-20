@@ -21,42 +21,55 @@
 
                         </div>
 
-                            <div class="py-12">
+    
+                            <div id="location" class="py-12">
 
                             @include('price.country-dropdown-list')
 
-                            </div>
-
-                                <div class="left:50px">
+                            
 
                                     @include('price.charger-type')
-            
-                                </div>
 
-                                    <div class="py-12">
 
+                                   
                                         @include('price.slider')
-                
-                                    </div>
+                                       
+
+                                    
+                            </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+
     <style>
 
-/* div .price{
-  padding: 2rem;
-  height: 80px;
-  width: 40%;
-  background-color: white;
-  border-top-right-radius: 15px;
-  border-top-left-radius: 15px;
-} */
+div#location{
+    display: flex;
+    background-color: white;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    height: 120px;
+    width: 80%;
+} 
 
+.vl {
+  border-left: 2px solid rgb(206, 204, 204);
+  height: 50px;
+  position: ;
+  left: 50%;
+  margin-left: 60px;
+    top: 0;
+}
+#slider {
 
-        </style>
+}
+
+  </style>
 
 </x-app-layout>
 </body>

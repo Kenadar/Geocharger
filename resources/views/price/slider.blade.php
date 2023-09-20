@@ -1,13 +1,25 @@
  <!DOCTYPE html>
 <html>
 <head>
+<style>
+  .slidecontainer {
+    margin-top: 15px;
+  margin-left: 60px;
+  height: 50px;
+  }
 
+/* p#value{
+  color: black;
+} */
+
+  </style>
 </head>
-<body>
+<body> 
+  <img src="{{ asset('assets/currency-dollar-circle.png') }}" >    
 
 <div class="slidecontainer">
   <input type="range" min="5" max="50" value="5" class="slider" id="myRange">
-  <p>Value: <span id="demo"></span></p>
+  <p id="value" class="text-gray-500">Value: <span id="demo"></span></p>
 </div>
 
 
