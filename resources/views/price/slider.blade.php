@@ -8,14 +8,17 @@
   height: 50px;
   }
 
-/* p#value{
-  color: black;
-} */
+  img#dollar{
+    position: relative;
+    top: 12px;
+    left: 50px;
+  }
+
 
   </style>
 </head>
 <body> 
-  <img src="{{ asset('assets/currency-dollar-circle.png') }}" >    
+  <img id="dollar" src="{{ asset('assets/currency-dollar-circle.png') }}" >    
 
 <div class="slidecontainer">
   <input type="range" min="5" max="50" value="5" class="slider" id="myRange">

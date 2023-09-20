@@ -17,7 +17,7 @@
 
   padding: 2rem;
   height: 70px;
-  width: 40%;
+  width: 30%;
   background-color: white;
   border-top-right-radius: 15px;
   border-top-left-radius: 15px;
