@@ -6,6 +6,7 @@ use App\Models\Geodata;
 use App\Http\Controllers\GeodataController;
 use Illuminate\Http\Request;
 use App\Models\Dayparting;
+use App\Http\Controllers\BookingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -78,6 +79,8 @@ Route::get('/geodata/create/create', function(){
     return view('geodata/create');
 })->name('geodata.create');
 
-Route::post('/geodata/create/create',[GeodataController::class, 'store'], function(){
-  
-})->name('geodata.create');
+Route::post('/geodata/create/create',[GeodataController::class, 'store'])->name('geodata.create');
+
+Route::get('/booking', [BookingController::class, 'index'])->name('booking');
+
+Route::post('/booking', [BookingController::class, 'store'])->name('booking');
