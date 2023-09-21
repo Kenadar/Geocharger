@@ -18,10 +18,8 @@ class BookingController extends Controller
 {
     public function index(Request $request) {
         $geodata = Geodata::all();
-        $city = Cities::all();
-        // dd($geodata);
 
-        return view('booking/create',['geodatas' => $geodata, 'cities' => $city]);
+        return view('booking/create',['geodatas' => $geodata, ]);
     }
 
     public function store(Request $request): JsonResponse
@@ -62,12 +60,14 @@ class BookingController extends Controller
         if($alreadyBooked){
             return response()->json(['status'=>'already booked!']);
         }
+        $geodata_id = $request->get('geodata_id');
+        $geodata = Geodata::where('id', '=', $request->get('geodata_id'))->get()->first();
 
         foreach($intervalrange as $interval){
 
            Booking::create([
-            'tenant'=> $request->get('tenant'),
-            'lessor'=> $request->get('lessor'),
+            'tenant_id'=>  $id = auth()->user()->id,
+            'lessor_id'=> $geodata->user_id,
             'geodata_id' => $request->get('geodata_id'),
             'interval' => $interval
         ]);

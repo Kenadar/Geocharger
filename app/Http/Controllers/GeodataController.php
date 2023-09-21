@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Validator;
 use Illuminate\Http\RedirectResponse;
 use App\Models\Dayparting;
+use Illuminate\Support\Facades\Auth;
 
 class GeodataController extends Controller
 {
@@ -22,6 +23,9 @@ class GeodataController extends Controller
             return redirect('/geodata/list'); 
         }
 
+        // $userId = Auth::user()->id;
+        
+
         $alreadyCreated = Geodata::where('address', '=', $request->get('address'))
             ->get()->isNotEmpty();
             
@@ -33,6 +37,7 @@ class GeodataController extends Controller
         $geodata = Geodata::create([
             'name' => $request->get('name'),
             'address' => $request->get('address'),
+            'user_id' => $id = auth()->user()->id
         ]);
         $dayparting=$request->get('dayparting');
         $json=json_encode($dayparting);

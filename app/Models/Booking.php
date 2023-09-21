@@ -12,8 +12,8 @@ class Booking extends Model
     use HasFactory;
 
     protected $fillable = [
-        'tenant',
-        'lessor',
+        'tenant_id',
+        'lessor_id',
         'geodata_id',
         'interval'
     ];
@@ -21,6 +21,10 @@ class Booking extends Model
     public function geodata() : BelongsTo
     {   
         return $this->belongsTo(Geodata::class);
+    }
+    public function user() : BelongsTo
+    {   
+        return $this->BelongsTo(User::class);
     }
 
 }
