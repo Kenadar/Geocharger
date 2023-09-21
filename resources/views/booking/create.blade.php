@@ -29,27 +29,25 @@
                         </div>
 
                         <div class="mt-4">
-                            <x-input-label for="geodata_id" :value="__('Geodata ID')" />
-                            <x-text-input id="geodata_id" class="block mt-1 w-full" type="number" name="geodata_id"/>
+                            <x-input-label for="geodata_id" :value="__('Address')" />
+                            @include('booking.dropdown-ajax')
                             <x-input-error :messages="$errors->get('geodata_id')" class="mt-2" />
                         </div>
 
                         
-                        <div>
+                        <div class="mt-4">
                                 <label for="start_time">Choose your start booking date and time:</label><br>
 
                                 <input  type="datetime-local" id="start_time"
                                 name="start_time" value="2018-06-12T19:30">
                         </div>
 
-                            <div>
+                            <div class="mt-4">
                                 <label for="end_time">Choose your end booking date and time:</label><br>
 
                                 <input  type="datetime-local" id="end_time"
                                 name="end_time" value="2018-06-12T19:30">
                             </div>
-
-                            
 
                             <div class="flex items-center justify-end mt-4">
                                 <x-primary-button class="ml-3">

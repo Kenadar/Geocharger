@@ -17,8 +17,7 @@ class GeodataUpdateRequest extends FormRequest
     {
         return [
             'name' => ['string', 'max:255'],
-            'longitude' => ['number'],
-            'latitude' => ['numder']
+            'address' => ['string'],
         ];
     }
 }

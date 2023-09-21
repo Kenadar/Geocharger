@@ -12,13 +12,16 @@ use DatePeriod;
 use DateTime;
 use App\Models\Geodata;
 use App\Models\Dayparting;
+use App\Models\Cities;
 
 class BookingController extends Controller
 {
     public function index(Request $request) {
         $geodata = Geodata::all();
+        $city = Cities::all();
+        // dd($geodata);
 
-        return view('booking/create',['geodatas' => $geodata]);
+        return view('booking/create',['geodatas' => $geodata, 'cities' => $city]);
     }
 
     public function store(Request $request): JsonResponse
@@ -31,14 +34,14 @@ class BookingController extends Controller
             'end_time' => 'required|integer'
         ]);
 
-        
         $timestampArray = $this->getTimestamp($request['start_time'], $request['end_time']);
-        
         $decode = $this->bookedDayparting($timestampArray['start_ts'], $timestampArray['end_ts'], $request->get('geodata_id'));
+
 
         if ($decode == false){
             return response()->json(['status' => 'You can not book this time!']);
         }
+
 
         if ($validated->fails()) {
             // return response()->json(['status'=> 'failed']);

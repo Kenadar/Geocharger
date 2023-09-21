@@ -12,8 +12,7 @@ class Geodata extends Model
 
     protected $fillable = [
         'name',
-        'latitude',
-        'longitude'
+        'address',
     ];
 
     protected $table = 'geodatas';
@@ -26,6 +25,11 @@ class Geodata extends Model
     {
         return $this->hasOne(Dayparting::class);
     }
+    public function city(): HasMany 
+    {
+        return $this->HasMany(Cities::class);
+    }
+
     public static function deleteById(int $id){
         $geodata = Geodata::find($id);
         $geodata->delete();
@@ -41,8 +45,7 @@ class Geodata extends Model
     {
         $geodata = Geodata::find($id); 
         $geodata->name = $params['name'];        
-        $geodata->latitude = $params ['latitude'];
-        $geodata->longitude = $params ['longitude'];
+        $geodata->address = $params ['address'];
 
 
         $geodata->save();
