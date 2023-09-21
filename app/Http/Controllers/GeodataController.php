@@ -29,7 +29,8 @@ class GeodataController extends Controller
             
 
         if($alreadyCreated){
-            return redirect('/geodata/list');        }
+            return redirect('/geodata/list');        
+        }
 
         $geodata = Geodata::create([
             'name' => $request->get('name'),

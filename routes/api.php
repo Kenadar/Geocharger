@@ -30,4 +30,3 @@ Route::get('/geodata', function (Request $request){
     return $request -> toJson();
 });
 
-// Route::get('/booking',  [BookingController::class, 'store'] );
