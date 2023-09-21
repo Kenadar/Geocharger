@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Models\Geodata;
+use App\Http\Controllers\GeodataController;
+use Illuminate\Http\Request;
+use App\Models\Dayparting;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,3 +32,52 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+
+Route::get('/geodata', function(){
+    $geodata = Geodata::all();
+
+    return view('geodata/geodata', ['geodatas' => $geodata]);
+})->middleware(['auth', 'verified'])->name('geodata');
+
+Route::get('/geodata/list', function () {
+    $geodata = Geodata::all();
+
+    return view('geodata/geodata', ['geodatas' => $geodata]);
+})->name('geodata.list');
+
+Route::get('/geodata/delete/{id}', function($id){
+    $deleteDayparting = Dayparting::deleteById($id);
+
+    $deleteById = Geodata::deleteById($id);
+    return redirect('/geodata/list');
+});
+
+Route::get('/geodata/edit/{id}', function($id){
+
+    $geodata = Geodata::find($id);
+    return view("geodata/edit", ['geodata' => $geodata]);
+})->name('geodata.edit');
+
+Route::post('/geodata/edit/{id}', function(Request $request, $id){
+    $params=[
+        'name' => $request->get('name'),
+        'latitude' => $request->get('latitude'),
+        'longitude' => $request->get('longitude'),
+        'dayparting' => $request->get('dayparting')
+    ];
+
+    $geodata= Geodata::find($id);
+    Geodata::updateById($params, $id);
+
+    Dayparting::updateById($params, $id);
+
+    return redirect('/geodata/list');
+})->name('geodata.update');
+
+Route::get('/geodata/create/create', function(){
+    return view('geodata/create');
+})->name('geodata.create');
+
+Route::post('/geodata/create/create',[GeodataController::class, 'store'], function(){
+  
+})->name('geodata.create');

@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Geodata;
 use Illuminate\Http\Request;
 use Validator;
-use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use App\Models\Dayparting;
 
 class GeodataController extends Controller
 {
-    public function store(Request $request): JsonResponse
+    public static function store(Request $request): RedirectResponse
     {
         $validated = Validator::make($request->all(), [
             'name' => 'required|string',
@@ -19,15 +20,33 @@ class GeodataController extends Controller
 
 
         if ($validated->fails()) {
-            return response()->json(['status'=> 'failed']);
+            return redirect('/geodata/list'); 
         }
 
-        Geodata::create([
+        $alreadyCreated = Geodata::where('latitude', '=', $request->get('latitude'))
+            ->where('longitude', '=', $request->get('longitude'))
+            ->get()->isNotEmpty();
+            
+
+        if($alreadyCreated){
+            return redirect('/geodata/list');        }
+
+        $geodata = Geodata::create([
             'name' => $request->get('name'),
             'latitude' => $request->get('latitude'),
             'longitude' => $request->get('longitude')
         ]);
+        $dayparting=$request->get('dayparting');
+        $json=json_encode($dayparting);
 
-        return response()->json(['status' => 'success']);
+        Dayparting::create([
+            'geodata_id'=>$geodata->id,
+            'dayparting'=>$json
+        ]);
+
+        return redirect('/geodata/list');
     } 
+
+    
+    
 }
