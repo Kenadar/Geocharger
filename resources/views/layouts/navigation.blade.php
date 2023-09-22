@@ -28,6 +28,12 @@
                         {{ __('Booking') }}
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('price')" :active="request()->routeIs('price')">
+                        {{ __('Price') }}
+                    </x-nav-link>
+                </div>
             
             </div>
 
