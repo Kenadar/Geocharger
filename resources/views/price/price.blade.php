@@ -26,7 +26,7 @@
 
                             @include('price.country-dropdown-list')
 
-                            
+                            {{-- {{ $countryData }} --}}
 
                                     @include('price.charger-type')
 

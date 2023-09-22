@@ -29,37 +29,33 @@ img#marker {
     <img id="marker" src="{{ asset('assets/marker-pin-02.png') }}" >   
     <select id="underline_select" class="block py-2.5 px-0  text-sm text-gray-500 bg-transparent border-0  border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
 
-    @foreach($prices as $price) 
+        <option selected>Country</option>
 
-    <option>Country</option>
-    <option>
-        {{ $price->country }}
-    </option>
+        @foreach($prices as $price) 
 
-  @endforeach
-</select>
+            <option value="<?php echo $price->price ?>">
+                {{ $price->country }}
+            </option>
+
+        @endforeach
+
+    </select>
 
 <br/>
 <div id='result'></div>
-
 <div class="vl"></div> 
 
-
 <script>
-    $(document).ready(function(){
- 
- // Initialize select2
- $("#address").select2();
 
- // Read selected option
- $('#but_read').click(function(){
-     var username = $('#address option:selected').text();
-     var userid = $('#address').val();
-console.log(username)
-     $('#result').html("id : " + name + ", name : " + address);
+var selectElement1 = document.getElementById("underline_select");
 
- });
+selectElement1.addEventListener("change", function() {
+    var countryPrice = selectElement1.value;
+
+    console.log("Country Price:", countryPrice);
 });
+
+
 </script>
 </body>
 </html>

@@ -11,7 +11,11 @@ class PriceController extends Controller
     public function index(Request $request){
         $price = Price::all();
         $type = ChargerType::all();
+        
+        $countryData = Price::select('id', 'country', 'price')->get();
 
-        return view('price/price', ['prices' => $price, 'charger' => $type]);
+        return view('price/price', ['prices' => $price, 'charger' => $type, 'countryData' => $countryData]);
     }
+
+   
 }
