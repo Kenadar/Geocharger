@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <body>
-
+        
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
@@ -21,23 +21,18 @@
 
                         </div>
 
-    
                             <div id="location" class="py-12">
 
-                            @include('price.country-dropdown-list')
+                                @include('price.country-dropdown-list')
 
-                            {{-- {{ $countryData }} --}}
+                                @include('price.charger-type')
 
-                                    @include('price.charger-type')
-
-
-                                   
-                                        @include('price.slider')
+                                @include('price.slider')
                                        
+                                <button id="calcButton"  type="submit"><span>Calculate</span></button>
 
-                                    
+
                             </div>
-
                     </div>
                 </div>
             </div>
@@ -45,33 +40,62 @@
     </div>
 
 
-    <style>
+<style>
 
-div#location{
+    div#location{
+        display: flex;
+        background-color: white;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        border-top-right-radius: 15px;
+        height: 120px;
+        width: 100%;
+        /* position: relative;
+        bottom: 16px;
+        right: 16px; */
+
+    } 
+
+    .vl {
+        border-left: 2px solid rgb(206, 204, 204);
+        height: 50px;
+        position: ;
+        left: 50%;
+        margin-left: 60px;
+        top: 0;
+    }
+
+    button#calcButton{
     display: flex;
-    background-color: white;
+    background-color: #A1A8B3;
+    margin-left: 60px;
+    margin-top: 5px;
+    width: 100px;
+    height: 40px;
+    position: relative;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     border-top-right-radius: 15px;
-    height: 120px;
-    width: 80%;
-} 
+    border-top-left-radius: 15px;
+    }
+    #calcButton span{
+    text-align: center;
+    position: absolute;
+    left: 15px;
+    top: 7px;
+    
+    }
+    button#calcButton:hover {
+        background-color: #c2c2c2;
+    }
 
-.vl {
-  border-left: 2px solid rgb(206, 204, 204);
-  height: 50px;
-  position: ;
-  left: 50%;
-  margin-left: 60px;
-    top: 0;
-}
-#slider {
-
-}
-
-  </style>
+</style>
 
 </x-app-layout>
+
+<script src="{{ asset('js/calculator.js') }}"></script>
+
+
 </body>
 </head>
 </html>

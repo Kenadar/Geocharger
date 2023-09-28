@@ -1,6 +1,7 @@
  <!DOCTYPE html>
 <html>
 <head>
+
 <style>
   .slidecontainer {
     margin-top: 15px;
@@ -45,6 +46,7 @@
 
   </script>
 
+<script src="{{ asset('js/calculator.js') }}"></script>
 
 </body>
 </html> 

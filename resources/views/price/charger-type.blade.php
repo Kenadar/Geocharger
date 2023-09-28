@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   
+
     <style>
 
         select#charger {
@@ -49,6 +49,9 @@
     
     
     </script>
+    
+    <script src="{{ asset('js/calculator.js') }}"></script>
+
 
 </body>
 </html>
