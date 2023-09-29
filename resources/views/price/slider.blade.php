@@ -28,23 +28,7 @@
 
 
 
-<script>
 
-  var slider1 = document.getElementById("myRange");
-  var demo = document.getElementById("value");
-  demo.innerHTML = slider1.value;
-
-  slider1.oninput = function() {
-    demo.innerHTML = this.value;
-  }
-  slider1.addEventListener("change", function() {
-
-    var demo = document.getElementById("value");
-    
-    console.log("Slider Value:", demo.innerHTML);
-    });
-
-  </script>
 
 <script src="{{ asset('js/calculator.js') }}"></script>
 

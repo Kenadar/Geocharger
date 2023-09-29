@@ -2,8 +2,8 @@
    <form>
    <div id="line" class="text-sm font-medium text-center text-gray-500  border-gray-200 dark:text-gray-400 dark:border-gray-700">
     <ul id="ulTab" class=" flex flex-wrap -mb-px">
-            <button id ="kwTab" type='submit' class="highlight inline-block p-4 ">kWT</button>
-            <button id='hourTab' type='submit' class="highlight inline-block p-4 ">Hour</button>
+            <button id ="kwTab" class="highlight inline-block p-4 ">kWT</button>
+            <button id='hourTab' class="highlight inline-block p-4 ">Hour</button>
         
     </ul>
 </div>
@@ -41,7 +41,6 @@ ul#ulTab {
   padding: 0;
   position: relative;
   margin-left: 15px;
-  /* margin-top: 20px; */
 }
 
 
@@ -49,10 +48,5 @@ ul#ulTab {
   
   
  
-      <script src="{{ asset('js/calculator.js') }}">
-
-          document.addEventListener("DOMContentLoaded", () => {
-          });
-
-      </script>
+      <script src="{{ asset('js/calculator.js') }}"></script>
 </body>

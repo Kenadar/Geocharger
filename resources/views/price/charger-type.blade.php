@@ -37,18 +37,7 @@
 <div id='result'></div>
 
 <div class="vl"></div> 
-<script>
 
-    var selectElement = document.getElementById("charger");
-    
-    selectElement.addEventListener("change", function() {
-        var chargerType = selectElement.value;
-    
-        console.log("Charger Type:", chargerType);
-    });
-    
-    
-    </script>
     
     <script src="{{ asset('js/calculator.js') }}"></script>
 

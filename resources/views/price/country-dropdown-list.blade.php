@@ -45,18 +45,12 @@ img#marker {
 <div id='result'></div>
 <div class="vl"></div> 
 
-<script>
-
-var selectElement1 = document.getElementById("underline_select");
-
-selectElement1.addEventListener("change", function() {
-    var countryPrice = selectElement1.value;
-
-    console.log("Country Price:", countryPrice);
-});
 
 
-</script>
+
+
+<script src="{{ asset('js/calculator.js') }}"></script>
+
 </body>
 </html>
 
