@@ -31,7 +31,6 @@
                                        
                                 <button id="calcButton"  type="submit"><span>Calculate</span></button>
 
-                                {{-- <input type="number" id="calcResult"> --}}
                                 <p id="calcValue" class="text-gray-500">Result: <span id="demo"></span></p>
                                 
 
@@ -45,21 +44,12 @@
 
 
 <style>
-
-    /* input#calcResult{
-        width: 80px;
-        position: relative;
-        left: 20px;
-        border-radius: 5px;
-        height: 35px;
-        top: 5px;
-        border-color: gray;
-    } */
    
     p#calcValue{
         position: relative;
-        top: 45px;
+        top: 15px;
         right: 45px;
+        left: 20px;
     }
 
     div#location{
