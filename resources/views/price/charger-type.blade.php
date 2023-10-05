@@ -36,7 +36,7 @@
 <br/>
 <div id='result'></div>
 
-<div class="vl"></div> 
+<div class="verticalLine"></div> 
 
     
     <script src="{{ asset('js/calculator.js') }}"></script>

@@ -43,7 +43,7 @@ img#marker {
 
 <br/>
 <div id='result'></div>
-<div class="vl"></div> 
+<div class="verticalLine"></div> 
 
 
 
