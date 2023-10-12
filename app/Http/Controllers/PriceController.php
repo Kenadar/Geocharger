@@ -21,18 +21,15 @@ class PriceController extends Controller {
     }
 
     public function store(){
-        
-        $client = new Client();
 
+        $client = new Client();
         $apiUrl = 'https://api.monobank.ua/bank/currency';
-        
         $currency = $client->get($apiUrl);
 
         if ($currency->getStatusCode() == 200) {
 
             $data = json_decode($currency->getBody(), true);
         }
-
 
         $iso4217 = new \Payum\ISO4217\ISO4217; 
 
@@ -49,7 +46,6 @@ class PriceController extends Controller {
 
                         unset($datas['currencyCodeA']);
                         unset($datas['currencyCodeB']);
-
                         Currency::create($datas);
                     }
                 } catch (Exception $e) {

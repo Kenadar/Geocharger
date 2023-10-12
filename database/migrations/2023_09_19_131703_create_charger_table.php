@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::create('charger', function (Blueprint $table) {
             $table->id();
             $table->string('Type');
-            $table->integer('Watt');
-            $table->integer('Ampere');
             $table->decimal('Kilowatt');
             $table->timestamps();
         });
