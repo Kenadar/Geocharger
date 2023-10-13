@@ -8,16 +8,60 @@ use App\Models\ChargerType;
 use GuzzleHttp\Client;
 use App\Models\Currency;
 use Exception;
+use Locale;
 
 class PriceController extends Controller {
 
     public function index(Request $request){
         $price = Price::all();
         $type = ChargerType::all();
-        
         $countryData = Price::select('id', 'country', 'price')->get();
 
-        return view('price/price', ['prices' => $price, 'charger' => $type, 'countryData' => $countryData]);
+        $userLocale = Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']);
+        
+        switch($userLocale){
+
+                case 'fr':
+                    $userCountry = 'France';
+                    break;
+                case 'it_IT':
+                    $userCountry = 'Italy';
+                    break;
+                case 'uk-UA':
+                    $userCountry = 'Ukraine';
+                    break;
+                case 'de':
+                    $userCountry = 'Germany';
+                    break;
+                case 'ro_RO':
+                    $userCountry = 'Romania';
+                    break;
+                case 'pl':
+                    $userCountry = 'Poland';
+                    break;
+                case 'ro-MD':
+                    $userCountry = 'Moldova';
+                    break;
+                case 'cs':
+                    $userCountry = 'the Czech Republic';
+                    break;
+                case 'hu_HU':
+                    $userCountry = 'Hungary';
+                    break;
+                case 'de-AT':
+                    $userCountry = 'Austia';
+                    break;
+                default:
+                    $userCountry = 'Ukraine';
+                    break;
+            }
+
+        return view('price/price', ['prices' => $price, 
+                                    'charger' => $type, 
+                                    'countryData' => $countryData,
+                                    'userLocale' => $userLocale,
+                                    'userCountry' => $userCountry,
+                                    ]);
     }
 
     public function store(){

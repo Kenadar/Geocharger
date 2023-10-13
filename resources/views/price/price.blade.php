@@ -46,6 +46,7 @@
         
 </x-app-layout>
 
+
 <script src="{{ asset('js/calculator.js') }}"></script>
 
 
