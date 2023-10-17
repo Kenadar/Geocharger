@@ -18,17 +18,12 @@ class GeodataController extends Controller
             'address' => 'required|string',
         ]);
 
-
         if ($validated->fails()) {
             return redirect('/geodata/list'); 
-        }
-
-        // $userId = Auth::user()->id;
-        
+        }        
 
         $alreadyCreated = Geodata::where('address', '=', $request->get('address'))
             ->get()->isNotEmpty();
-            
 
         if($alreadyCreated){
             return redirect('/geodata/list');        
@@ -39,6 +34,7 @@ class GeodataController extends Controller
             'address' => $request->get('address'),
             'user_id' => $id = auth()->user()->id
         ]);
+
         $dayparting=$request->get('dayparting');
         $json=json_encode($dayparting);
 
@@ -49,7 +45,4 @@ class GeodataController extends Controller
 
         return redirect('/geodata/list');
     } 
-
-    
-    
 }

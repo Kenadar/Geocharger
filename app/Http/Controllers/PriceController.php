@@ -77,7 +77,6 @@ class PriceController extends Controller {
             $data = json_decode($currency->getBody(), true);
         }
 
-
         $iso4217 = new \Payum\ISO4217\ISO4217; 
 
         if (is_array($data)) {

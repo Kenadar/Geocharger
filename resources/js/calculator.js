@@ -16,7 +16,7 @@ function hourResult() {
 
 document.addEventListener("DOMContentLoaded", function() {
 
-    var selectElement1 = document.getElementById("underline_select");
+    var selectElement1 = document.getElementById("country_dropdown");
 
     var uahImage = document.getElementById('uah');
     var euroImage = document.getElementById('euro');
