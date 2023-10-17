@@ -14,6 +14,7 @@ select#underline_select {
     margin-left: 60px;
     margin-bottom: 150px;
     height: 50px;
+    width:
 }
 
 img#marker {
@@ -28,13 +29,11 @@ img#marker {
 <body>
     <img id="marker" src="{{ asset('assets/marker-pin-02.png') }}" >   
     <select id="underline_select" class="block py-2.5 px-0  text-sm text-gray-500 bg-transparent border-0  border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
-
-        <option selected>Country</option>
-
+        
         @foreach($prices as $price) 
 
-            <option value="<?php echo $price->price ?>">
-                {{ $price->country }}
+        <option value="{{ $price->price }}" @if ($price->country == $userCountry) selected @endif>
+            {{ $price->country }}
             </option>
 
         @endforeach
@@ -43,20 +42,10 @@ img#marker {
 
 <br/>
 <div id='result'></div>
-<div class="vl"></div> 
+<div class="verticalLine"></div> 
 
-<script>
+<script src="{{ Vite::asset('resources/js/calculator.js') }}"></script>
 
-var selectElement1 = document.getElementById("underline_select");
-
-selectElement1.addEventListener("change", function() {
-    var countryPrice = selectElement1.value;
-
-    console.log("Country Price:", countryPrice);
-});
-
-
-</script>
 </body>
 </html>
 
