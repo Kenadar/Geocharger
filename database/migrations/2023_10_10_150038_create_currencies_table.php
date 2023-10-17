@@ -20,6 +20,8 @@ return new class extends Migration
             $table->text('currencyA');
             $table->text('currencyB');
             $table->timestamps();
+
+            $table->index(['currencyA', 'currencyB'], 'idx_currency_AB');
         });
     }
 

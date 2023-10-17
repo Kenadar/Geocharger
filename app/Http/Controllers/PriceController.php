@@ -21,23 +21,20 @@ class PriceController extends Controller {
     }
 
     public function store(){
-
         $client = new Client();
         $apiUrl = 'https://api.monobank.ua/bank/currency';
         $currency = $client->get($apiUrl);
 
         if ($currency->getStatusCode() == 200) {
-
             $data = json_decode($currency->getBody(), true);
         }
-
+        
         $iso4217 = new \Payum\ISO4217\ISO4217; 
 
         if (is_array($data)) {
             foreach ($data as $datas) {
                 try {
                     if ($datas !== null) {
-
                         $currencyA = $iso4217->findByNumeric($datas['currencyCodeA'])->getAlpha3();
                         $currencyB = $iso4217->findByNumeric($datas['currencyCodeB'])->getAlpha3();
 
@@ -46,14 +43,18 @@ class PriceController extends Controller {
 
                         unset($datas['currencyCodeA']);
                         unset($datas['currencyCodeB']);
-                        Currency::create($datas);
+                        
+                        $currencyExist = Currency::where('currencyA', $currencyA)
+                                                ->where('currencyB', $currencyB)
+                                                ->first();
+                        if ($currencyExist) {
+                            $currencyExist->update($datas);
+                        }
                     }
                 } catch (Exception $e) {
-
                     \Log::error('Error: ' . $e->getMessage());
                 }
             }
         }
     }
-
 }
