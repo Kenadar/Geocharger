@@ -33,7 +33,7 @@
   <p id="value" class="text-gray-500">Value: <span id="demo"></span></p>
 </div>
 
-<script src="{{ asset('js/calculator.js') }}"></script>
+<script src="{{ Vite::asset('resources/js/calculator.js') }}"></script>
 
 </body>
 </html> 

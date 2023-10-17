@@ -1,6 +1,6 @@
     <x-app-layout>
 
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/price.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ Vite::asset('resources/css/price.css') }}">
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
@@ -47,6 +47,6 @@
 </x-app-layout>
 
 
-<script src="{{ asset('js/calculator.js') }}"></script>
+<script src="{{ Vite::asset('resources/js/calculator.js') }}"></script>
 
 

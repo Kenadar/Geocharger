@@ -6,7 +6,7 @@
 
         select#charger {
             margin-left: 60px;
-            width: 20%;
+            width: 15%;
             height: 50px;
         }
         img#zap{
@@ -39,7 +39,7 @@
 <div class="verticalLine"></div> 
 
     
-    <script src="{{ asset('js/calculator.js') }}"></script>
+<script src="{{ Vite::asset('resources/js/calculator.js') }}"></script>
 
 
 </body>
