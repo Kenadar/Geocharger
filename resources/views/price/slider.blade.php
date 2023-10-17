@@ -30,7 +30,7 @@
 
 
 
-<script src="{{ asset('js/calculator.js') }}"></script>
+<script src="{{ Vite::asset('resources/js/calculator.js') }}"></script>
 
 </body>
 </html> 

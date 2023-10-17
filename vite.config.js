@@ -11,7 +11,9 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/css/app.css',
+                'resources/css/price.css',
                 'resources/js/app.js',
+                'resources/js/calculator.js',
             ],
             refresh: true,
         }),
