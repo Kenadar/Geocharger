@@ -51,7 +51,6 @@ class Geodata extends Model
         $geodata->name = $params['name'];        
         $geodata->address = $params ['address'];
 
-
         $geodata->save();
     }
     
