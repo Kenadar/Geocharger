@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   
+
     <style>
 
         select#charger {
@@ -36,19 +36,11 @@
 <br/>
 <div id='result'></div>
 
-<div class="vl"></div> 
-<script>
+<div class="verticalLine"></div> 
 
-    var selectElement = document.getElementById("charger");
     
-    selectElement.addEventListener("change", function() {
-        var chargerType = selectElement.value;
-    
-        console.log("Charger Type:", chargerType);
-    });
-    
-    
-    </script>
+<script src="{{ Vite::asset('resources/js/calculator.js') }}"></script>
+
 
 </body>
 </html>

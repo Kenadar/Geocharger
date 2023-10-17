@@ -1,6 +1,7 @@
  <!DOCTYPE html>
 <html>
 <head>
+
 <style>
   .slidecontainer {
     margin-top: 15px;
@@ -27,24 +28,9 @@
 
 
 
-<script>
 
-  var slider1 = document.getElementById("myRange");
-  var demo = document.getElementById("value");
-  demo.innerHTML = slider1.value;
 
-  slider1.oninput = function() {
-    demo.innerHTML = this.value;
-  }
-  slider1.addEventListener("change", function() {
-
-    var demo = document.getElementById("value");
-    
-    console.log("Slider Value:", demo.innerHTML);
-    });
-
-  </script>
-
+<script src="{{ Vite::asset('resources/js/calculator.js') }}"></script>
 
 </body>
 </html> 
