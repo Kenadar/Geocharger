@@ -11,11 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('charger', function (Blueprint $table) {
+        Schema::create('currencies', function (Blueprint $table) {
             $table->id();
-            $table->string('Type');
-            $table->decimal('Kilowatt');
+            $table->integer('date');
+            $table->float('rateBuy');
+            $table->float('rateCross');
+            $table->float('rateSell');
+            $table->text('currencyA');
+            $table->text('currencyB');
             $table->timestamps();
+
+            $table->index(['currencyA', 'currencyB'], 'idx_currency_AB');
         });
     }
 
@@ -24,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('charger');
+        Schema::dropIfExists('currencies');
     }
 };
