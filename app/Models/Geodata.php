@@ -13,7 +13,9 @@ class Geodata extends Model
     protected $fillable = [
         'user_id',
         'name',
-        'address',
+        'latitude',
+        'longitude',
+
     ];
 
     protected $table = 'geodatas';

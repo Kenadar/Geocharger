@@ -16,7 +16,8 @@ return new class extends Migration
             $table->integer('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('name');
-            $table->string('address');
+            $table->float('latitude');
+            $table->float('longitude');
             $table->timestamps();
         });
     }
