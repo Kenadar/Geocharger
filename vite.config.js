@@ -10,8 +10,14 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
+                'resources/css/tab-kWH.css',
+                'resources/css/country-dropdown.css',
+                'resources/css/charger-type.css',
                 'resources/css/app.css',
+                'resources/css/googleMap.css',
+                'resources/css/slider.css',
                 'resources/js/app.js',
+                'resources/js/dashboardMap.js'
             ],
             refresh: true,
         }),
