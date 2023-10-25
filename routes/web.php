@@ -9,6 +9,7 @@ use App\Models\Dayparting;
 use App\Http\Controllers\BookingController;
 use App\Models\Price;
 use App\Http\Controllers\PriceController;
+use App\Http\Controllers\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,14 +22,10 @@ use App\Http\Controllers\PriceController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome'); 
 });
 
-Route::get('/dashboard', function () {
-    $geodata = Geodata::all();
-
-    return view('dashboard', ['geodatas' => $geodata]);
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard',[DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -38,56 +35,19 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
-Route::get('/geodata', function(){
-    $geodata = Geodata::all();
+Route::get('/geodata', [GeodataController::class, 'index'])->middleware(['auth', 'verified'])->name('geodata');
+Route::get('/geodata/list', [GeodataController::class, 'index'])->name('geodata.list');
 
-    return view('geodata/geodata', ['geodatas' => $geodata]);
-})->middleware(['auth', 'verified'])->name('geodata');
+Route::get('/geodata/edit/{id}', [GeodataController::class, 'edit'])->name('geodata.edit');
+Route::post('/geodata/edit/{id}', [GeodataController::class, 'updateById'])->name('geodata.update');
 
-Route::get('/geodata/list', function () {
-    $geodata = Geodata::all();
+Route::get('/geodata/delete/{id}', [GeodataController::class,'deleteById']);
 
-    return view('geodata/geodata', ['geodatas' => $geodata]);
-})->name('geodata.list');
-
-Route::get('/geodata/delete/{id}', function($id){
-    $deleteDayparting = Dayparting::deleteById($id);
-
-    $deleteById = Geodata::deleteById($id);
-    return redirect('/geodata/list');
-});
-
-Route::get('/geodata/edit/{id}', function($id){
-
-    $geodata = Geodata::find($id);
-    return view("geodata/edit", ['geodata' => $geodata]);
-})->name('geodata.edit');
-
-Route::post('/geodata/edit/{id}', function(Request $request, $id){
-    $params=[
-        'name' => $request->get('name'),
-        'address' => $request->get('address'),
-        'dayparting' => $request->get('dayparting')
-    ];
-
-    $geodata= Geodata::find($id);
-    Geodata::updateById($params, $id);
-
-    Dayparting::updateById($params, $id);
-
-    return redirect('/geodata/list');
-})->name('geodata.update');
-
-Route::get('/geodata/create/create', function(){
-    return view('geodata/create');
-})->name('geodata.create');
-
+Route::get('/geodata/create/create', [GeodataController::class, 'create'])->name('geodata.create');
 Route::post('/geodata/create/create',[GeodataController::class, 'store'])->name('geodata.create');
 
 Route::get('/booking', [BookingController::class, 'index'])->name('booking');
-
 Route::post('/booking', [BookingController::class, 'store'])->name('booking');
 
 Route::get('/price', [PriceController::class, 'index'])->name('price');
 Route::get('/price/create', [PriceController::class, 'store'])->name('price.create');
-

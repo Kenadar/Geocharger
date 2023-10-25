@@ -1,0 +1,17 @@
+#geoInfo {
+    float: left;
+    height: 500px;
+    width: 50%;
+    background-color: #3a414d;
+}
+
+#firstHeader {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+#secondHeader {
+    display: flex;
+    margin-left: 60px;
+}

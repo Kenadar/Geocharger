@@ -1,3 +1,5 @@
+var marker;
+
 function initMap() {
     console.log('Maps JavaScript API loaded.');
 
@@ -17,3 +19,14 @@ function initMap() {
         });
     }
 }
+
+
+
+// if (navigator.geolocation) {
+//     navigator.geolocation.getCurrentPosition(function(position) {
+//         var location = {
+//             lat: position.coords.latitude,
+//             lng: position.coords.longitude
+//         };
+//     });
+// }

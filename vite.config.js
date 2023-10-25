@@ -17,6 +17,7 @@ export default defineConfig({
                 'resources/css/googleMap.css',
                 'resources/css/slider.css',
                 'resources/css/dashboardNav.css',
+                'resources/css/geoInfo.css',
                 'resources/js/app.js',
                 'resources/js/dashboardMap.js'
             ],

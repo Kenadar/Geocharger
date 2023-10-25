@@ -11,6 +11,16 @@ use Illuminate\Support\Facades\Auth;
 
 class GeodataController extends Controller
 {
+    public function index(Request $request){
+        $geodata = Geodata::all();
+
+        return view('geodata/geodata', ['geodatas' => $geodata]);
+    }
+
+    public function create(){
+        return view('geodata/create');
+    }
+    
     public static function store(Request $request): RedirectResponse
     {
         $validated = Validator::make($request->all(), [
@@ -47,4 +57,37 @@ class GeodataController extends Controller
 
         return redirect('/geodata/list');
     } 
+
+    public static function deleteById(int $id){
+        $geodata = Geodata::find($id);
+        $deleteDayparting = Dayparting::deleteById($id);
+        $geodata->delete();
+        return redirect('/geodata/list');
+    }
+
+    public function edit(int $id){
+        $geodata = Geodata::find($id);
+       
+        return view("geodata/edit", ['geodata' => $geodata]);
+    }
+
+    public static function updateById(Request $request, $params, $id)
+    {
+        $params=[
+            'name' => $request->get('name'),
+            'address' => $request->get('address'),
+            'dayparting' => $request->get('dayparting')
+        ];
+    
+        $geodata= Geodata::find($id);
+        Geodata::updateById($params, $id);
+        $geodata->name = $params['name'];        
+        $geodata->address = $params ['address'];
+        $geodata->save();
+
+        Dayparting::updateById($params, $id);
+
+        return redirect('/geodata/list');       
+
+    }
 }

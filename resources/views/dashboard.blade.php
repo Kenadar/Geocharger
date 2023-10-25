@@ -4,8 +4,15 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100" style="height: 550px">
-                    {{ __("You're logged in!") }}
-                  
+
+                    <link rel="stylesheet" type="text/css" href="{{ Vite::asset('resources/css/geoInfo.css') }}" />
+                    <div id="geoInfo" class='rounded-xl'>
+                        <h1 id="firstHeader" class="text-5xl"><strong>Choose your charger</strong></h1>
+                        <h1 id="secondHeader" class="text-5xl"><i>Find your best</i></h1>
+                        <div>
+                            
+                        </div>
+                    </div>
                     <title>Simple Map</title>
                     <link rel="stylesheet" type="text/css" href="{{ Vite::asset('resources/css/googleMap.css') }}" />
                     <script async
@@ -17,7 +24,7 @@
                             <gmp-advanced-marker id="mapPoints" position="{{ $geodata->latitude }},{{ $geodata->longitude }}" title="{{ $geodata->name }}"></gmp-advanced-marker>
                         @endforeach
                     </gmp-map>
-            
+        
                 </div>
             </div>
         </div>

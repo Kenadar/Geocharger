@@ -30,6 +30,7 @@ class Dayparting extends Model
     public static function deleteById(int $id){
         $dayparting = Dayparting::where('geodata_id', '=', $id)->first();
         $dayparting->delete();
+
     }
     
 }

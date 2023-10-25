@@ -1,7 +1,7 @@
 <x-app-layout>
     <link rel="stylesheet" type="text/css" href="{{ Vite::asset('resources/css/price.css') }}">
 
-    <x-slot name="header">
+    <x-slot name="header"  style="">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Price') }}
         </h2>
