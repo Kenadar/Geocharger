@@ -13,7 +13,9 @@ class Geodata extends Model
     protected $fillable = [
         'user_id',
         'name',
-        'address',
+        'latitude',
+        'longitude',
+
     ];
 
     protected $table = 'geodatas';
@@ -50,7 +52,6 @@ class Geodata extends Model
         $geodata = Geodata::find($id); 
         $geodata->name = $params['name'];        
         $geodata->address = $params ['address'];
-
 
         $geodata->save();
     }

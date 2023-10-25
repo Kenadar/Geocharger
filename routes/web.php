@@ -25,7 +25,9 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $geodata = Geodata::all();
+
+    return view('dashboard', ['geodatas' => $geodata]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -87,3 +89,5 @@ Route::get('/booking', [BookingController::class, 'index'])->name('booking');
 Route::post('/booking', [BookingController::class, 'store'])->name('booking');
 
 Route::get('/price', [PriceController::class, 'index'])->name('price');
+Route::get('/price/create', [PriceController::class, 'store'])->name('price.create');
+

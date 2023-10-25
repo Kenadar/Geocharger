@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('geodatas', function (Blueprint $table) {
+        Schema::create('currencies', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->string('name');
-            $table->float('latitude');
-            $table->float('longitude');
+            $table->integer('date');
+            $table->float('rateBuy');
+            $table->float('rateCross');
+            $table->float('rateSell');
+            $table->text('currencyA');
+            $table->text('currencyB');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('geodatas');
+        Schema::dropIfExists('currencies');
     }
 };
