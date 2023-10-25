@@ -1,0 +1,27 @@
+#navBar {
+    position: relative;
+    top: 10px;
+    padding: 5px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+#navLinks {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    padding-left: 30%;
+}
+
+#navDropdown {
+    position: absolute;
+    right: 25px;
+    display: flex;
+    margin-top: 15px;
+}
+
+#geoName {
+    margin-left: 15px;
+    margin-top: 20px;
+}
