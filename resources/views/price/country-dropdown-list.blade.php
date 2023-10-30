@@ -22,6 +22,7 @@
     <div class="verticalLine"></div> 
 
 <script src="{{ Vite::asset('resources/js/calculator.js') }}"></script>
+<script src="{{ Vite::asset('resources/js/dashboardMap.js') }}"></script>
 </body>
 </html>
 

@@ -23,6 +23,12 @@
                         </div>
 
                         <div class="mt-4">
+                            <x-input-label for="aboutGeo" :value="__('About Geo')" />
+                            <x-text-input id="aboutGeo" class="block mt-1 w-full" type="text" name="aboutGeo"/>
+                            <x-input-error :messages="$errors->get('aboutGeo')" class="mt-2" />
+                        </div>
+
+                        <div class="mt-4">
                             <x-input-label for="latitude" :value="__('Latitude')" />
                             <x-text-input id="latitude" class="block mt-1 w-full" type="string" name="latitude"/>
                             <x-input-error :messages="$errors->get('latitude')" class="mt-2" />

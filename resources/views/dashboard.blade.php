@@ -9,9 +9,15 @@
                     <div id="geoInfo" class='rounded-xl'>
                         <h1 id="firstHeader" class="text-5xl"><strong>Choose your charger</strong></h1>
                         <h1 id="secondHeader" class="text-5xl"><i>Find your best</i></h1>
-                        <div>
-                            
-                        </div>
+                        <div id="aboutGeo">Тут буде інформація про вашу точку:</div>
+                        @foreach ( $dayparting as $daypart )  
+                            <div id="geoDayparting" value="">Час для бронювання:
+                                <button>{{ $daypart->dayparting}}</button>
+                                  
+                                 
+                            </div>
+                        @endforeach
+
                     </div>
                     <title>Simple Map</title>
                     <link rel="stylesheet" type="text/css" href="{{ Vite::asset('resources/css/googleMap.css') }}" />
@@ -21,7 +27,13 @@
 
                     <gmp-map id="geodataMap" center="50.4501, 30.5234" zoom="10" map-id="DEMO_MAP_ID">
                         @foreach ($geodatas as $geodata)
-                            <gmp-advanced-marker id="mapPoints" position="{{ $geodata->latitude }},{{ $geodata->longitude }}" title="{{ $geodata->name }}"></gmp-advanced-marker>
+                        
+                            <gmp-advanced-marker 
+                                                id="mapPoints" 
+                                                position="{{ $geodata->latitude }},{{ $geodata->longitude }}" 
+                                                title="{{ $geodata->name }},{{ $geodata->aboutGeo }}"
+                                                >
+                            </gmp-advanced-marker>
                         @endforeach
                     </gmp-map>
         
@@ -30,4 +42,5 @@
         </div>
     </div>
     <script src="{{ Vite::asset('resources/js/dashboardMap.js') }}"></script>
+    <script src="{{ Vite::asset('resources/js/dashboardInfo.js') }}"></script>
 </x-app-layout>

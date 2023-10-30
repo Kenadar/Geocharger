@@ -25,6 +25,7 @@ class GeodataController extends Controller
     {
         $validated = Validator::make($request->all(), [
             'name' => 'required|string',
+            'aboutGeo' => 'required|string',
             'latitude' => 'required|decimal:3,9',
             'longitude' => 'required|decimal:3,9',
         ]);
@@ -42,6 +43,7 @@ class GeodataController extends Controller
 
         $geodata = Geodata::create([
             'name' => $request->get('name'),
+            'aboutGeo' =>$request->get('aboutGeo'),
             'latitude' => $request->get('latitude'),
             'longitude' => $request->get('longitude'),
             'user_id' => $id = auth()->user()->id
@@ -57,20 +59,17 @@ class GeodataController extends Controller
 
         return redirect('/geodata/list');
     } 
-
     public static function deleteById(int $id){
         $geodata = Geodata::find($id);
         $deleteDayparting = Dayparting::deleteById($id);
         $geodata->delete();
         return redirect('/geodata/list');
     }
-
     public function edit(int $id){
         $geodata = Geodata::find($id);
        
         return view("geodata/edit", ['geodata' => $geodata]);
     }
-
     public static function updateById(Request $request, $params, $id)
     {
         $params=[
@@ -78,7 +77,7 @@ class GeodataController extends Controller
             'address' => $request->get('address'),
             'dayparting' => $request->get('dayparting')
         ];
-    
+
         $geodata= Geodata::find($id);
         Geodata::updateById($params, $id);
         $geodata->name = $params['name'];        
@@ -88,6 +87,5 @@ class GeodataController extends Controller
         Dayparting::updateById($params, $id);
 
         return redirect('/geodata/list');       
-
     }
 }

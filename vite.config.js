@@ -19,7 +19,8 @@ export default defineConfig({
                 'resources/css/dashboardNav.css',
                 'resources/css/geoInfo.css',
                 'resources/js/app.js',
-                'resources/js/dashboardMap.js'
+                'resources/js/dashboardMap.js',
+                'resources/js/dashboardInfo.js',
             ],
             refresh: true,
         }),

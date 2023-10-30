@@ -15,18 +15,33 @@ function initMap() {
                     anchor: advancedMarker
                 });
                 console.log(advancedMarker.title, advancedMarker.position);
+
+                const responseAbout = await fetch("/dashboard/geo/info");
+                const geo = await responseAbout.json();
+                console.log(geo);
+
+                const aboutGeo = document.getElementById("aboutGeo");
+                aboutGeo.innerHTML = "";
+
+                geo.forEach(item => {
+                    const itemElement = document.createElement("div");
+                    itemElement.textContent = ` Опис Точки: ${item.aboutGeo}`;
+                    aboutGeo.appendChild(itemElement);
+                });
+
+                const responseDaypart = await fetch("/dashboard/geo/dayparting");
+                const daypart = await responseDaypart.json();
+                console.log(daypart);
+
+                const geoDayparting = document.getElementById("geoDayparting");
+                geoDayparting.innerHTML = "";
+
+                daypart.forEach(item => {
+                    const itemElement2 = document.createElement("div");
+                    itemElement2.textContent = ` Час для бронювання: ${item.geoDayparting}`;
+                    geoDayparting.appendChild(itemElement2);
+                });
             });
         });
     }
 }
-
-
-
-// if (navigator.geolocation) {
-//     navigator.geolocation.getCurrentPosition(function(position) {
-//         var location = {
-//             lat: position.coords.latitude,
-//             lng: position.coords.longitude
-//         };
-//     });
-// }

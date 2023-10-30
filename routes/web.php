@@ -26,6 +26,9 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard',[DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard/geo/info', [DashboardController::class, 'geoInfo'])->name('geodata.info');
+Route::get('/dashboard/geo/dayparting', [DashboardController::class, 'geoDayparting'])->name('geodata.dayparting');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
