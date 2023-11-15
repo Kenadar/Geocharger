@@ -21,7 +21,7 @@ class GeodataController extends Controller
         return view('geodata/create');
     }
     
-    public static function store(Request $request): RedirectResponse
+    public static function store(Request $request)
     {
         $validated = Validator::make($request->all(), [
             'name' => 'required|string',
